@@ -22,6 +22,6 @@ int main() {
 	cout << "Monthly Salary :"<<Monthly_Salary<<"\n";
 	cout << "Yearly Salary: " <<Yearly_Salary<< endl;
 	cout << "Gender: "<<Gender<<"\n";
-	cout << "Married : "<<Marrid<<"\n";
+	cout << "Married : "<<isMarrid<<"\n";
 	cout << "******************************\n";
 }

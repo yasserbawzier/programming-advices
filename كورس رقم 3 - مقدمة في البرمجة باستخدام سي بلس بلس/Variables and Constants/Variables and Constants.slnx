@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Variables and Constants/Variables and Constants.vcxproj" />
+  <Project Path="Variables and Constants/Variables and Constants.vcxproj" Id="0b3995a6-0676-438d-878a-708ddd610f61" />
 </Solution>
