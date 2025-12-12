@@ -26,9 +26,9 @@ bool chisHave(char anser){
 		return false;
 	}
 }
-bool canDrive(bool ageValid , bool haveLicense,bool IsHaveRecommendation=false){
+bool canDrive(bool ageValid , bool haveLicense){
 	
-	return ((ageValid && haveLicense) || IsHaveRecommendation);
+	return (ageValid && haveLicense);
 }
 int ingetInput(string Massege){
 	int input;
@@ -43,11 +43,27 @@ char chgetInput(string Massege) {
 	cin >> Input;
 	return Input;
 }
+bool ishaveRecommendation(char anser) {
+	if (anser == 'Y' || anser == 'y')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 void PrintCanDrive(bool IsCan) {
 	if (IsCan)
 		cout << "you can drive\n";
 	else
 		cout << "you can not drive\n";
+}
+void SwapNamber(int& Numbe1, int& Numbe2) {
+	int temp;
+	temp = Numbe1;
+	Numbe1 = Numbe2;
+	Numbe2 = temp;
 }
 int main()
 {
@@ -69,7 +85,7 @@ int main()
 	short Age;
 
 	Recommendation = chgetInput("do you have Recommendation?Y,N");
-	if (canDrive(0, 0, chisHave(Recommendation))) {
+	if (ishaveRecommendation(Recommendation)) {
 		cout << "you can Drive";
 	}
 	else
@@ -79,6 +95,18 @@ int main()
 		PrintCanDrive(canDrive(isAgeValid(Age), chisHave(ishaveLicens)));
 	}
 	*/
+	
+	//this is the proplem #14 - Swap Numbers
+	/*int Number1, Number2;
+	cout << "please enter Number 1:";
+	cin >> Number1;
+	cout << "please enter Number 2:";
+	cin >> Number2;
+	SwapNamber(Number1, Number2);
+	cout << "Number 1 after swap is :" << Number1 << endl;
+	cout << "Number 2 after swap is :" << Number2 << endl;
+	*/
+	return 0;
 
 
 }
