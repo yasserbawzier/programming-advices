@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Lesson #41 - Arrays f Structure/Lesson #41 - Arrays f Structure.vcxproj" />
+</Solution>
