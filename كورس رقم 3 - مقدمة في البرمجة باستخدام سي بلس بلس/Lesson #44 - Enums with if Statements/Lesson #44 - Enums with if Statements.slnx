@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Lesson #44 - Enums with if Statements/Lesson #44 - Enums with if Statements.vcxproj" />
+</Solution>
