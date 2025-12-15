@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Lesson #47 - For Loops/Lesson #47 - For Loops.vcxproj" />
+</Solution>
