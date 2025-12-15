@@ -53,7 +53,41 @@ void PrintAllCaracters() {
     }
   
 }
-void Print
+void PrintMultiplicationTable() {
+    for (int i = 1; i <= 10; i++) {
+        cout << "Number :" << i << endl;
+        for (int j = 1; j <= 10; j++) {
+                        cout<<i<<" * "<<j<<" = "<<i*j<<endl;
+        }
+        cout << "---------------\n";
+    }
+}
+void PrintEachLetterWithAllLetters() {
+    //this function prints each letter with all letters from A to Z
+    for (char i = 'A'; i <= 'Z'; i++) {
+        cout << "Character :" << i << endl;
+        for (char j = 'A'; j <= 'Z'; j++) {
+            cout << i << j  << endl;
+        }
+        cout << "---------------\n";
+    }
+}
+void PrintInvertedPyramid() {
+    for (short i = 1; i <= 7; i++) {
+        for (short j = 7; j >= i; j--) {
+            cout << "*";
+        }
+        cout << "\n";
+    }
+}
+void PrintPyramid() {
+    for (short i = 1; i <= 7; i++) {
+        for (short j = 1; j <= i; j++) {
+            cout << "*";
+        }
+        cout << "\n";
+    }
+}
 int main()
 {
     //PrintNumbers(10);
@@ -67,6 +101,34 @@ int main()
     // cout << TotalFactorial(3) << endl;
     // cout<<"-----------------------------------\n";
     //PrintAllCaracters();
-
+    // cout<<"-----------------------------------\n";
+    //PrintMultiplicationTable();
+    // cout<<"-----------------------------------\n";
+    //PrintEachLetterWithAllLetters();
+    // cout<<"-----------------------------------\n";
+    //PrintInvertedPyramid();
+    // this print inverted pyramid like this:
+	//*******
+    //******
+    //*****
+    //****
+    //***
+    //**
+    //*
+    // cout<<"-----------------------------------\n";
+    //PrintPyramid();
+    // this print pyramid like this:
+    // *
+    // **
+    // ***
+    // ****
+    // *****
+    // ******
+    // *******
+    // cout<<"-----------------------------------\n";
+    
+    
+    
+    
     return 0;
 }
