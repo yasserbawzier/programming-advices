@@ -1,2 +1,5 @@
 ﻿  Problem #6 to #10 Solutions.cpp
+C:\Users\y7709\source\repos\04 - Algorithms & Problem-Solving Level 1 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions.cpp(153,10): warning C4244: 'return': conversion from 'float' to 'short', possible loss of data
+C:\Users\y7709\source\repos\04 - Algorithms & Problem-Solving Level 1 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions.cpp(155,11): warning C4244: 'return': conversion from 'float' to 'short', possible loss of data
+C:\Users\y7709\source\repos\04 - Algorithms & Problem-Solving Level 1 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions\Problem #6 to #10 Solutions.cpp(157,10): warning C4244: 'return': conversion from 'float' to 'short', possible loss of data
   Problem #6 to #10 Solutions.vcxproj -> C:\Users\y7709\source\repos\04 - Algorithms & Problem-Solving Level 1 Solutions\Problem #6 to #10 Solutions\x64\Debug\Problem #6 to #10 Solutions.exe
