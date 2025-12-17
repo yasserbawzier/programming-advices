@@ -191,6 +191,36 @@ float CalculateRectangArea(float Lenth, float Width) {
 }
 
 
+//--------------------------------------------------------
+// #16
+
+//function:calculateSquareRoot
+//Parameters:double Number
+//reutrn : this ia a function that you can use to get the root
+double calculateSquareRoot(double n) {
+	//ãÇ ÞÏÑÊ ÇÍáå ÍÇæáÊ ÓÇÚå æÈÚÏåÇ ÇÓÊÚäÊ ÈÇáÐßÇÁ ÇáÇÕØäÇÚí
+	
+	// Starting with an initial guess
+	double x = n;
+	double y = 1;
+
+	// e represents the precision (accuracy level)
+	double e = 0.000001;
+
+	while (x - y > e) {
+		x = (x + y) / 2;
+		y = n / x;
+	}
+	return x;
+}
+
+//function:CaluculateRectangleAreaByDiagonalAndSideArea
+//parameters:float Diogonal, float SideArea
+// return :this is a function thay you can use to get the Rectangle Area By Side And Diagonal
+float CaluculateRectangleAreaByDiagonalAndSideArea(float Diogonal, float SideArea) {
+	float area= Diogonal * calculateSquareRoot(pow(SideArea, 2)- pow(Diogonal, 2));
+	return area;
+}
 int main()
 {
 
@@ -204,7 +234,7 @@ int main()
 	float Number = ReadNumber("enter the number ?");
 	PrintNumber("the half's Your number is :",CalculateHalfName(Number));
 	*/
-	
+
 
 	//this code check the mark is pass or not 
 	/*
@@ -223,9 +253,9 @@ int main()
 
 	//this code sum three numbers
 	/*
-    short num1, num2, num3;
-    num1 = ReadNumber("enter num1:");
-    num2 = ReadNumber("enter num2:");
+	short num1, num2, num3;
+	num1 = ReadNumber("enter num1:");
+	num2 = ReadNumber("enter num2:");
 	num3 = ReadNumber("enter num3");
 	PrintNumber("Average is : ", CalculaterAverage(num1, num2, num3));
 	*/
@@ -258,13 +288,13 @@ int main()
 	float num1, num2;
 	num1 = ReadNumber("enter the num1:");
 	num2 = ReadNumber("enter the num2:");
-	
+
 	PrintNumber("they numbers beform swap");
 	PrintNumber("num1=", num1);
 	PrintNumber("num2=", num2);
-	
+
 	SwapTwoNumbers(num1, num2);
-	
+
 	PrintNumber("they numbers after swap");
 	PrintNumber("num1=", num1);
 	PrintNumber("num2=", num2);
@@ -276,7 +306,15 @@ int main()
 	float Lenth, Width;
 	Lenth = ReadNumber("enter the Lenth:");
 	Width = ReadNumber("enter the Width:");
-	
+
 	PrintNumber("the calculat rctangl area is :", CalculateRectangArea(Lenth, Width));
 	*/
+
+	//this code calculate rctangl area by diagonal and Side 
+	/*
+	cout << CaluculateRectangleAreaByDiagonalAndSideArea(5, 40);
+	*/
+
+
+
 }
