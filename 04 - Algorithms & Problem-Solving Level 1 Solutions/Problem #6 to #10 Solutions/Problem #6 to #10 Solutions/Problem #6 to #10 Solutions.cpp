@@ -221,6 +221,52 @@ float CaluculateRectangleAreaByDiagonalAndSideArea(float Diogonal, float SideAre
 	float area= Diogonal * calculateSquareRoot(pow(SideArea, 2)- pow(Diogonal, 2));
 	return area;
 }
+
+
+//--------------------------------------------------------
+// #17
+//function:CaluculaterTriangleArea
+//parameters:float Height, float Base
+//return :this is a function that can you use to get Triangle Area
+float CaluculaterTriangleArea(float Height, float Base) {
+	return (Base/2) * Height;
+ 
+
+}
+
+
+//--------------------------------------------------------
+// #18
+//function:CalculateCircleArea
+//parameters:float Radius
+//return :this is a function that can you use to get Circle Area
+const float PI = 3.14159;
+float CalculateCircleArea(float Radius) {
+	
+	   return PI * pow(Radius, 2);
+	 
+}
+
+//--------------------------------------------------------
+//#19
+//function:CalculateCircleByDiameter
+//parameters:float Diameter
+//return :this is a function that can you use to get Circle Area By Diameter
+float CalculateCircleByDiameter(float Diameter) {
+
+	return (PI*pow(Diameter,2))/4;
+}
+
+//--------------------------------------------------------
+//#20
+//function:CalculateCircleInsidSequare
+//parameters:float AreaSequar
+//return :this is a function that can you use to get Circle Insid Sequare
+float CalculateCircleInsidSequare(float AreaSequar) {
+	return (PI * pow(AreaSequar,2))/4 ;
+}
+
+
 int main()
 {
 
@@ -312,9 +358,30 @@ int main()
 
 	//this code calculate rctangl area by diagonal and Side 
 	/*
-	cout << CaluculateRectangleAreaByDiagonalAndSideArea(5, 40);
+	PrintNumber( "the calculat rctangl area by Diagonal and Side:",CaluculateRectangleAreaByDiagonalAndSideArea(5, 40));
+	*/
+	 
+	//this code calculate triangle area by Height and Base
+	/*
+	PrintNumber("the calculat triangle area is :", CaluculaterTriangleArea(10, 8));
+	*/
+
+	//this code calculate circle area by Radius
+	/*
+	PrintNumber("the calculat circle area is :", CalculateCircleArea(5));
+	*/
+
+
+    //this code calculate circle area by Diameter
+    /*
+     PrintNumber("the calculat circle area by Diameter is :", CalculateCircleByDiameter(10));
+    */
+
+    //this code calculate circle insid squar area
+    /*
+    PrintNumber("the calculat circle insid squar area is :", CalculateCircleInsidSequare(10));
 	*/
 
 
 
-}
+	}
