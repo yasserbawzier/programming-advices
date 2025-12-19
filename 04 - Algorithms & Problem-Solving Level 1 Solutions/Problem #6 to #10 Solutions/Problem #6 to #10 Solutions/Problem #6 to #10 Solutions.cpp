@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include <iostream>
 #include <string>
@@ -198,7 +198,7 @@ float CalculateRectangArea(float Lenth, float Width) {
 //Parameters:double Number
 //reutrn : this ia a function that you can use to get the root
 double calculateSquareRoot(double n) {
-	//ãÇ ÞÏÑÊ ÇÍáå ÍÇæáÊ ÓÇÚå æÈÚÏåÇ ÇÓÊÚäÊ ÈÇáÐßÇÁ ÇáÇÕØäÇÚí
+	//Ù…Ø§ Ù‚Ø¯Ø±Øª Ø§Ø­Ù„Ù‡ Ø­Ø§ÙˆÙ„Øª Ø³Ø§Ø¹Ù‡ ÙˆØ¨Ø¹Ø¯Ù‡Ø§ Ø§Ø³ØªØ¹Ù†Øª Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ
 	
 	// Starting with an initial guess
 	double x = n;
@@ -266,6 +266,38 @@ float CalculateCircleInsidSequare(float AreaSequar) {
 	return (PI * pow(AreaSequar,2))/4 ;
 }
 
+
+//--------------------------------------------------------
+//#21
+//function:CalculateCircleByCircumference
+//parameters:float Circumference
+//return :this is a function that can you use to get Circle Area By Circumference
+float CalculateCircleByCircumference(float Circumference) {
+	return pow(Circumference , 2)/(4 * PI);
+}
+
+
+//--------------------------------------------------------
+//#22
+//function:CalculateCircleByIsoscelesTriangle
+//parameters:float Base,float Height
+//return :this is a function that can you use to get Circle Area By Isosceles Triangle
+float CalculateCircleByIsoscelesTriangle(float Height, float Base) {
+	float R = PI * (pow(Base, 2) / 4) * ((2 * Height - Base) / (2 * Height + Base));
+
+	return R;
+}
+
+//--------------------------------------------------------
+//#23
+//function:CalculateCircleAreaByArbitraryTriangle
+//parameters:float SideA,float SideB,float SideC
+//return :this is a function that can you use to get Circle Area By Arbitrary Triangle
+float CalculateCircleAreaByArbitraryTriangle(float SideA, float SideB, float SideC) {
+	float s = (SideA + SideB + SideC) / 2; 
+	float T = (SideA * SideB * SideC) / (4 * calculateSquareRoot(s * (s - SideA) * (s - SideB) * (s - SideC)));
+	return PI * pow(T, 2);
+}
 
 int main()
 {
@@ -382,6 +414,21 @@ int main()
     PrintNumber("the calculat circle insid squar area is :", CalculateCircleInsidSequare(10));
 	*/
 
+    //this code calculate circle area by Circumference
+	/*
+	PrintNumber("the calculat circle area by Circumference is :", CalculateCircleByCircumference(20));
+	*/
+	
+	//this code calculate circle area by Isosceles Triangle
+    /*
+    PrintNumber("the calculat circle area by Isosceles Triangle is :", CalculateCircleByIsoscelesTriangle(20, 10));
+	*/
 
+	//this code calculate circle area by Arbitrary Triangle
+    /*
+    PrintNumber("the calculat circle area by Arbitrary Triangle is :", CalculateCircleAreaByArbitraryTriangle(5, 6, 7));
+    */
 
-	}
+   return 0; 
+
+}
