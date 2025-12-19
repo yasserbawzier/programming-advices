@@ -61,6 +61,7 @@ float CalculateHalfName(short Number) {
 //parameter:short Number,string Message
 //return :This is a proseger Prints Message and Number
 void PrintNumber(string Message,float Nuamber=0) {
+	if(Nuamber)
 	if(Nuamber==0)
 		cout << Message << endl;
 	else
@@ -299,6 +300,31 @@ float CalculateCircleAreaByArbitraryTriangle(float SideA, float SideB, float Sid
 	return PI * pow(T, 2);
 }
 
+//--------------------------------------------------------
+//#24
+//function:ValidateNumberInRange
+//parameters:short Number,short From,short To
+//return :this is a function that can you use to validate number in range
+bool ValidateNumberInRange(short Number, short From, short To) {
+	return (Number >= From && Number <= To);
+}
+
+//--------------------------------------------------------
+//#25
+//function:readNumberInLoop
+//parameters:short From,short To,string Message
+//return :this is a function that can you use to read number in range
+short readNumberInLoop(string Message, short From, short To) {
+	short Number;
+	do {
+		Number = ReadNumber(Message);
+	} while (!ValidateNumberInRange(Number, From, To));
+	return Number;
+}
+
+
+
+
 int main()
 {
 
@@ -428,6 +454,25 @@ int main()
     /*
     PrintNumber("the calculat circle area by Arbitrary Triangle is :", CalculateCircleAreaByArbitraryTriangle(5, 6, 7));
     */
+
+
+	//this code validate number in range
+    /*
+    short number = ReadNumber("enter the number ?");
+    if (ValidateNumberInRange(number, 10, 20))
+    PrintNumber("", number);
+	*/
+
+	//this code read number in range
+	/*
+	short numberInRange = readNumberInLoop("enter the number between 10 and 20 ?", 10, 20);
+	PrintNumber("the number in range is :", numberInRange);
+	*/
+     
+
+
+
+
 
    return 0; 
 
