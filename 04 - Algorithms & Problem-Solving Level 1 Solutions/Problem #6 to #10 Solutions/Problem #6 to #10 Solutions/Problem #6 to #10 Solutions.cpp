@@ -84,7 +84,7 @@ short ReadNumber(string Message) {
 
 //enum :enPassFail
 //this is an enum can you use it to check whether the studant pass or not
-enum enPassFail{Pass,Fail};
+enum enPassFail{Pass=1,Fail=0};
  
 
 //function:CheckMark
@@ -321,9 +321,103 @@ short readNumberInLoop(string Message, short From, short To) {
 	} while (!ValidateNumberInRange(Number, From, To));
 	return Number;
 }
+//--------------------------------------------------------
+//#26
+//function:PrintRangeFrom1toN
+//parameters:short number
+//return :this is a function that can you use to print range from 1 to N
+void PrintRangeFrom1toN(short number)
+{
+	for (short i = 1; i <= number; i++) {
+		cout << i << ",";
+	}
+	cout << endl;
+}
+
+//--------------------------------------------------------
+//#27
+//function:PrintRangeFromNto1
+//parameters:short number
+//return :this is a function that can you use to print range from N to 1
+void PrintRangeFromNto1(short number)
+{
+	for (short i = number; i >= 1; i--) {
+		cout << i << ",";
+	}
+	cout << endl;
+}
 
 
 
+//--------------------------------------------------------
+//#28
+
+enum enOddOrEven{Odd=1,Even=0};
+
+//function:CheckOddorEven
+//parameters:shrot number
+//return :this is a function Check is it the Odd number or the Even nubmer
+enOddOrEven CheckOddOrEven(short number) {
+	if (number % 2 == 0)
+		return enOddOrEven::Even;
+	else
+		return enOddOrEven::Odd;
+}
+//function:SumOddNumbersFrom1ToN
+//parameters:short Number
+//return :this is a function to calculate the sum of odd numbers from 1 to N
+short SumOddNumbersFrom1ToN(short Number) {
+	short sum = 0;
+	for (int i = 1; i <= Number; i++) {
+		if(CheckOddOrEven(i)==enOddOrEven::Odd)
+		sum +=i;
+	}
+	return sum;
+}
+
+
+//--------------------------------------------------------
+//#29
+//function:SumEvenNumbersFrom1ToN
+//parameters:short Number
+//return :this is a function to calculate the sum of Even numbers from 1 to N
+short SumEvenNumbersFrom1ToN(short Number) {
+	short sum = 0;
+	for (int i = 1; i <= Number; i++) {
+		if (CheckOddOrEven(i) == enOddOrEven::Even)
+			sum += i;
+	}
+	return sum;
+}
+
+
+//--------------------------------------------------------
+//#30
+
+//function:ReadPositiveNumber
+//parameters:string Message
+//return : this function is read positive number jsut
+short ReadPositiveNumber(string Message) {
+	short number;
+	do
+	{
+		cout << Message;
+		cin >> number;
+	} while (number<0);
+	return number;
+}
+
+//function:FactorialOfNumber
+//parameters:short Number
+//return : this function is give you factorial Number
+short FactorialOfNumber(short Number)
+{
+	short sum = 1;
+	for (int i = 1; i <= Number; i++) {
+		sum *= i;
+	}
+	return sum;
+}
 
 int main()
 {
@@ -469,11 +563,31 @@ int main()
 	PrintNumber("the number in range is :", numberInRange);
 	*/
      
+	/*
+    short Number = ReadNumber("enter the number ?");//this code read number in range
+    PrintRangeFrom1toN(Number);//this code print range from 1 to N
+	cout << "--------------------------------------" << endl;//فاصل بين الطباعة
+	PrintRangeFromNto1(Number);//this code print range from N to 1
+	*/
+    
 
 
 
+	/*
+    short Number = ReadNumber("enter the number ?");//this code read number in range
+    PrintNumber("the sum Odd Number is N to 0:",SumOddNumbersFrom1ToN(Number));
+    */
+
+    /*
+	short Number = ReadNumber("enter the number ?");//this code read number in range
+	PrintNumber("the sum Even Number is N to 0:", SumEvenNumbersFrom1ToN(Number));
+	*/
 
 
-   return 0; 
+     /*
+     PrintNumber("the sum Even Number is N to 0:", FactorialOfNumber(ReadPositiveNumber("enter the number ?")));
+     */
+
+return 0; 
 
 }
