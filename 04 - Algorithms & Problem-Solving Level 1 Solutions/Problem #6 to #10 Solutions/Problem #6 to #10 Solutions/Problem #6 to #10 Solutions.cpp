@@ -419,6 +419,113 @@ short FactorialOfNumber(short Number)
 	return sum;
 }
 
+
+
+
+//--------------------------------------------------------
+//#32
+
+
+//function:Power
+//parameters:short Number,short NumberPow
+//return : this function is Pow of Number
+short Power(short Number, short NubmerPow) {
+	if (NubmerPow == 0)
+		//any number powered to zero gives 1
+		return 1;
+
+	
+	short sum = 1;
+	for (int i = 1; i <= NubmerPow; i++) {
+		sum *=Number;
+	}
+	return sum;
+}
+
+//--------------------------------------------------------
+//#33
+//enum :enGrade
+//parameters:A,B,C,D,E,F
+//return :this is value are Grade
+enum enGrade{A=90,B=80,C=70,D=60,E=50,F=0};
+//function:PrintGrade
+//Parameters:enGrade Grade
+//return : this is print Grade 
+void PrintGrade(enGrade Grade) {
+	switch (Grade) {
+	case enGrade::A:
+	{
+		cout << "A";
+		break;
+	}
+	case enGrade::B:
+	{
+		cout << "B";
+		break;
+	}
+	case enGrade::C:
+	{
+		cout << "C";
+		break;
+	}
+	
+	case enGrade::D:
+	{
+		cout << "D";
+		break;
+	}
+	case enGrade::E:
+	{
+		cout << "E";
+		break;
+	}
+	case enGrade::F:
+	{
+		cout << "F";
+		break;
+	}
+	}
+}
+
+//function Grade
+//parameters:short Grade
+//return:this is give you the Grade A or D or B....
+enGrade Grade(short Grade) {
+	if (Grade >= 90) {
+		return enGrade::A;
+	}
+	else if (Grade >= 80) {
+		return enGrade::B;
+	}
+	else if (Grade >= 70) {
+		return enGrade::C;
+	}
+	else if (Grade >= 60) {
+		return enGrade::D;
+	}
+	else if (Grade >= 50) {
+		return enGrade::E;
+	}
+	else
+	{
+		return enGrade::F;
+	}
+}
+//function:ReadNumberInRange
+//Parameters:string Massage , short From ,short to 
+//return :This function displays a message to the user and takes values ​​from him within a specified range.
+short ReadNumberInRange(string Massage, short From, short to) {
+	short number;
+	do
+	{
+		cout << Massage;
+		cin >> number;
+
+	} while (number>From||number<to);
+	return number;
+}
+
+
 int main()
 {
 
@@ -588,6 +695,18 @@ int main()
      PrintNumber("the sum Even Number is N to 0:", FactorialOfNumber(ReadPositiveNumber("enter the number ?")));
      */
 
-return 0; 
+
+
+     /*
+     PrintNumber("the Pow is number 2:",Power(ReadPositiveNumber("enther the number is Positive:"), ReadPositiveNumber("enter the Power:")));
+     */
+
+
+     short grade = ReadNumberInRange("enter a grade between 0 and 100 :",0,100);
+     PrintNumber("the Grade is :");
+     PrintGrade(Grade(grade));
+
+	 
+	 return 0;
 
 }
