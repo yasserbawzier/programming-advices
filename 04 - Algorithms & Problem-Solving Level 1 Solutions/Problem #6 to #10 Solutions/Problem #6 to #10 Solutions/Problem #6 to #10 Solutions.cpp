@@ -61,18 +61,18 @@ float CalculateHalfName(short Number) {
 //parameter:short Number,string Message
 //return :This is a proseger Prints Message and Number
 void PrintNumber(string Message,float Nuamber=0) {
-	if(Nuamber)
+	
 	if(Nuamber==0)
 		cout << Message << endl;
 	else
-	cout << Message +to_string(Nuamber) << endl;
+	cout << Message <<Nuamber << endl;
 }
 
 //function :ReatNumber
 // parameter:stirng Message
 //return :This Function displays the Message and get a number's user
-short ReadNumber(string Message) {
-	short Number;
+int ReadNumber(string Message) {
+	int Number;
 	cout << Message ;
 	cin >> Number;
 	return Number;
@@ -448,6 +448,8 @@ short Power(short Number, short NubmerPow) {
 //parameters:A,B,C,D,E,F
 //return :this is value are Grade
 enum enGrade{A=90,B=80,C=70,D=60,E=50,F=0};
+
+
 //function:PrintGrade
 //Parameters:enGrade Grade
 //return : this is print Grade 
@@ -511,6 +513,8 @@ enGrade Grade(short Grade) {
 		return enGrade::F;
 	}
 }
+
+
 //function:ReadNumberInRange
 //Parameters:string Massage , short From ,short to 
 //return :This function displays a message to the user and takes values ​​from him within a specified range.
@@ -524,6 +528,62 @@ short ReadNumberInRange(string Massage, short From, short to) {
 	} while (number>From||number<to);
 	return number;
 }
+
+//--------------------------------------------------------
+//#34
+
+enum enPercentage { OnePercent = 1, TwoPercent = 2, TreePercent = 3, FivePercent = 5, ZeroPercent = 0 };
+
+enPercentage enEmploysPercentage(int TatalSales) {
+	if (TatalSales >= 1000000) 
+	{
+		return enPercentage::OnePercent;
+	}
+	else if (TatalSales >= 500000)
+	{
+		return enPercentage::TwoPercent;
+	}
+	else if(TatalSales>=100000)
+	{
+		return enPercentage::TreePercent;
+	}
+	else if (TatalSales >= 50000) 
+	{
+		return enPercentage::FivePercent; 
+	}
+	else
+	{
+		return enPercentage::ZeroPercent;
+	}
+}
+
+float EmployeePercentage(int TatalSales) {
+	switch (enEmploysPercentage(TatalSales)) {
+	case enPercentage::OnePercent: {
+		return  0.1;
+	}
+	case enPercentage::TwoPercent: {
+		return 0.2;
+	}
+	case enPercentage::TreePercent: {
+		return 0.3;
+	}
+	case enPercentage::FivePercent: {
+		return 0.5;
+	}
+	case enPercentage::ZeroPercent: {
+		return 0;
+	}
+	}
+}
+
+float EmployeeCommission(int TatalSales) {
+	return EmployeePercentage(TatalSales) * TatalSales;
+}
+
+
+//--------------------------------------------------------
+//#35
 
 
 int main()
@@ -702,11 +762,22 @@ int main()
      */
 
 
+     //هذا الكود ياخذ الدرجه بين 0 الى 100 ويعطي المستخدم تقييم الدرجة 
+	 /*
      short grade = ReadNumberInRange("enter a grade between 0 and 100 :",0,100);
      PrintNumber("the Grade is :");
      PrintGrade(Grade(grade));
-
+	 */
 	 
-	 return 0;
+
+     /*
+     int ToataSalary=ReadNumber("enter the Total Salary:");//قرائة اجمالي المبيعات للموظف
+	 PrintNumber("The Percantage is :", EmployeePercentage(ToataSalary));//طباعة نسبة العموله للموظف
+     PrintNumber("The Commission is :", EmployeeCommission(ToataSalary));//طباعة العموله للموضف بحسب اجمالي المبيعات التي ادخلت 
+	 */
+
+     
+
+	return 0;
 
 }
