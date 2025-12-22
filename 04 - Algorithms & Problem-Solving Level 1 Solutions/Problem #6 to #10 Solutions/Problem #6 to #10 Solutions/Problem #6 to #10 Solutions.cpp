@@ -584,6 +584,87 @@ float EmployeeCommission(int TatalSales) {
 
 //--------------------------------------------------------
 //#35
+//this is my answer
+// {
+float Multiply(float num1, float num2) {
+	return num1 * num2;
+}
+
+float CalculateTotalPennies(float Penny, float Nicke, float Dime, float Quarte, float Dollar)
+{
+	    float SumPenny = 0;
+
+	    SumPenny += Penny;
+		SumPenny += Multiply(Nicke, 5);
+		SumPenny += Multiply(Dime, 10);
+		SumPenny += Multiply(Quarte, 25);
+		SumPenny += Multiply(Dollar, 100);
+		return SumPenny;
+}
+
+float ConvertPenniesToDollars(float Pennys) {
+	return Pennys / 100;
+}
+//}
+//this is Ms.mohammed's answer
+
+
+// Struct: stPiggyBankContent
+// Purpose: Represents the different types of coins and dollar bills in the piggy bank.
+struct stPiggyBankContent
+{
+	int Pennies, Nickels, Dimes, Quarters, Dollars;
+};
+
+
+// Function: ReadPiggyBankContent
+// Purpose: Prompts the user to enter the number of different coins and dollar bills in the piggy bank.
+// Returns: A struct containing the number of each type of coin/bill.
+stPiggyBankContent ReadPiggyBankContent()
+{
+	stPiggyBankContent PiggyBankContent;  // Variable to store the piggy bank content.
+
+	// Prompt the user to enter the quantity of each type of coin and dollar bill.
+	cout << "Please enter the total number of Pennies: " << endl;
+	cin >> PiggyBankContent.Pennies;
+	cout << "Please enter the total number of Nickels: " << endl;
+	cin >> PiggyBankContent.Nickels;
+	cout << "Please enter the total number of Dimes: " << endl;
+	cin >> PiggyBankContent.Dimes;
+	cout << "Please enter the total number of Quarters: " << endl;
+	cin >> PiggyBankContent.Quarters;
+	cout << "Please enter the total number of Dollar bills: " << endl;
+	cin >> PiggyBankContent.Dollars;
+
+	return PiggyBankContent;  // Return the filled struct.
+}
+
+// Function: CalculateTotalPennies
+// Purpose: Converts all coins and dollar bills in the piggy bank to the equivalent value in pennies.
+// Parameter:
+//   - PiggyBankContent: A struct containing the number of each type of coin/bill.
+// Returns: The total value in pennies.
+int CalculateTotalPennies(stPiggyBankContent PiggyBankContent)
+{
+	// Compute total pennies by converting each coin type to its equivalent in pennies.
+	int TotalPennies = PiggyBankContent.Pennies * 1
+		+ PiggyBankContent.Nickels * 5
+		+ PiggyBankContent.Dimes * 10
+		+ PiggyBankContent.Quarters * 25
+		+ PiggyBankContent.Dollars * 100;
+
+	return TotalPennies;  // Return the total value in pennies.
+}
+
+
+
+//--------------------------------------------------------
+//#36
+enum enOperationYpe{Add='+',Subtract='-',Mult };
+
+float Calculater(char OperationType, float Number1, float Number2) {
+
+}
 
 
 int main()
@@ -776,7 +857,29 @@ int main()
      PrintNumber("The Commission is :", EmployeeCommission(ToataSalary));//طباعة العموله للموضف بحسب اجمالي المبيعات التي ادخلت 
 	 */
 
-     
+     /*
+     float Pennies=CalculateTotalPennies(ReadPositiveNumber("how mach you have from the Pennies : "),
+		 ReadPositiveNumber("how mach you have from the Nickels : "), 
+		 ReadPositiveNumber("how mach you have from the Dimes : "), 
+		 ReadPositiveNumber("how mach you have from the Quarters : "),
+		 ReadPositiveNumber("how mach you have from the Dollars : "));//It takes all the denominations you collected in your piggy bank and gives you how many pennies they are worth.
+	 //يأخذ التطبيق جميع الفئات النقدية التي جمعتها في حصالتك ويعطيك قيمة كل منها بالبنسات.
+
+	 PrintNumber("the Pennies is : ", Pennies);
+	 PrintNumber("the Dollars is : ", ConvertPenniesToDollars(Pennies));
+    
+	 //this is Ms.Mohammed's answer 
+	 
+	 // Read the piggy bank content and calculate the total value in pennies.
+	 int TotalPennies = CalculateTotalPennies(ReadPiggyBankContent());
+
+	 // Display the total amount in pennies.
+	 cout << endl << "Total Pennies = " << TotalPennies << endl;
+
+	 // Display the total amount in dollars by converting pennies to dollars.
+	 cout << endl << "Total Dollars = $" << (float)TotalPennies / 100 << endl;
+	 
+	 */
 
 	return 0;
 
