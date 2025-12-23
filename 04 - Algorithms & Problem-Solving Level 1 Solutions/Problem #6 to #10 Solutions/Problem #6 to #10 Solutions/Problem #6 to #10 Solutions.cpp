@@ -660,12 +660,72 @@ int CalculateTotalPennies(stPiggyBankContent PiggyBankContent)
 
 //--------------------------------------------------------
 //#36
-enum enOperationYpe{Add='+',Subtract='-',Mult };
+enum enOPerationType {enAdd='+',enSubtract='-',enMultiply='*',enDivide='/' };
 
-float Calculater(char OperationType, float Number1, float Number2) {
 
+float Calculater(enOPerationType OperationType, float Number1, float Number2) {
+	switch (OperationType) {
+	case enOPerationType::enAdd:
+		return Number1 + Number2;
+	case enOPerationType::enDivide:
+		return Number1 / Number2;
+	case enOPerationType::enMultiply:
+		return Number1 * Number2;
+	case enOPerationType::enSubtract:
+		return Number1 - Number2;
+	}
 }
 
+//--------------------------------------------------------
+//#38
+enum enPrimNumber { Prime = 1, NotPrime = 0 };
+
+enPrimNumber CheckPrime(short number) {
+	short num = round(number / 2);
+	for (short Count = 2; Count <= num; Count++) {
+		if ( number% Count == 0)
+			return enPrimNumber::NotPrime;
+	}
+	return enPrimNumber::Prime;
+}
+
+
+
+//--------------------------------------------------------
+//#39
+
+short CalculateRemainder(short TotalBill, short CashPaid) {
+	return CashPaid - TotalBill;
+}
+void PrintRemainder(short number) {
+	if (number < 0)
+		cout << "Remaining on the customer :"<<number;
+	else
+		cout << "Remaining for the customer:" << number;
+}
+
+void PrintPrimeNumber(short Number) {
+	switch (CheckPrime(Number)) {
+	case enPrimNumber::Prime:
+		cout << "this is Prime\n";
+		break;
+	case enPrimNumber::NotPrime:
+		cout << "this is Not Prime\n";
+		break;
+	}
+}
+
+//--------------------------------------------------------
+//#40
+
+float PercentageOfNumber(short Number, float Percentage) {
+	return Number * Percentage;
+}
+
+float AppPercentage(short Number) {
+	Number = PercentageOfNumber(Number, 1.10);
+	return PercentageOfNumber(Number, 1.16);
+}
 
 int main()
 {
@@ -881,6 +941,30 @@ int main()
 	 
 	 */
 
+
+
+
+     /*
+     PrintNumber("10*5=", Calculater((enOPerationType)'*', 10, 5));
+     PrintNumber("10/5=", Calculater((enOPerationType)'/', 10, 5));
+     PrintNumber("10+5=", Calculater((enOPerationType)'+', 10, 5));
+     PrintNumber("10-5=", Calculater((enOPerationType)'-', 10, 5));
+	 */
+	 
+     /*
+     PrintPrimeNumber(ReadPositiveNumber("enter Positive Number :"));
+	 */
+
+     /*
+     PrintRemainder(CalculateRemainder(20,10));
+	 */
+
+	 //--------------------------------------------------------
+	 //#40
+     
+     PrintNumber("the castoemr is :", AppPercentage(ReadNumber("enter the Number:")));
+	 
+	
 	return 0;
 
 }
