@@ -727,6 +727,60 @@ float AppPercentage(short Number) {
 	return PercentageOfNumber(Number, 1.16);
 }
 
+//--------------------------------------------------------
+//#41
+
+float HuresToDays(short NumberOfHures) {
+	return(float)NumberOfHures / 24;
+}
+float HuresToWeek(short NumberOfHures) {
+	return (float) NumberOfHures / (24*7);
+}
+void PrintHuresToDayAndWeek(short NumberOfHures) {
+	cout << "Total week is :" << HuresToWeek(NumberOfHures)<<endl;
+	
+	cout << "Total daye is :" << HuresToDays(NumberOfHures) << endl;
+}
+
+//--------------------------------------------------------
+//#42
+int secondsInHours(short hours) {
+	return hours * 3600;
+}
+short secondsInMinutes(short minutes) {
+	return minutes * 60;
+}
+int SecondsInDays(short days) {
+	return days * 24 * 3600;
+
+}
+int TotalSecondsOfWork(short days, short hours, short minutes, short seconds) {
+	return SecondsInDays(days) + secondsInHours(hours) + secondsInMinutes(minutes) + seconds;
+}
+
+
+//--------------------------------------------------------
+//#43
+int ConvertSecodsToDay(int Seconds) {
+	return Seconds / (24 * 60 * 60);
+}
+int ConvertSecodsToHours(int Seconds) {
+	return Seconds / (60 * 60);
+}
+int ConvertSecondsToMinuts(int Seconds) {
+	return Seconds / 60;
+}
+void TotalSecondsOfDays_Hours_minutes(int seconds) {
+	short days = ConvertSecodsToDay(seconds);
+	seconds -= SecondsInDays(days);
+	short Hours = ConvertSecodsToHours(seconds);
+	seconds -= secondsInHours(Hours);
+	short minuts = ConvertSecondsToMinuts(seconds);
+	seconds -= secondsInMinutes(minuts);
+	cout << days << ":" << Hours << ":" << minuts << ":" << seconds << endl;
+
+}
+
 int main()
 {
 
@@ -961,10 +1015,40 @@ int main()
 
 	 //--------------------------------------------------------
 	 //#40
-     
+     /*
      PrintNumber("the castoemr is :", AppPercentage(ReadNumber("enter the Number:")));
-	 
-	
+	 */
+
+
+	 //--------------------------------------------------------
+	 //#41
+	 /*
+     PrintHuresToDayAndWeek(365);
+	 */
+
+	 //--------------------------------------------------------
+	 //#42
+     /*
+	 short days, hours, minutes, seconds;
+     cout << "please enter days:";
+     cin >> days;
+     cout << "Please enter hours:";
+     cin >> hours;
+     cout << "please enter minutes:";
+     cin >> minutes;
+     cout << "please enter seconds:";
+     cin >> seconds;
+     system("cls");
+     cout << "the Total Seconds of Werk is :" << TotalSecondsOfWork(days, hours, minutes, seconds);
+	 */
+
+
+
+	 //--------------------------------------------------------
+	 //#43
+     /*
+	 TotalSecondsOfDays_Hours_minutes(193535);
+	 */
 	return 0;
 
 }
