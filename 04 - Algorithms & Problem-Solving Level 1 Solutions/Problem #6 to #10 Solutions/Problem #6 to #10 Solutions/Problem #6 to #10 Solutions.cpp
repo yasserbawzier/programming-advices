@@ -812,51 +812,97 @@ string GetDayOfWeek(enWeekDay Day) {
 
 //--------------------------------------------------------
 //#45
-enum enMonth { January = 1, February = 2, March = 3, April = 4, May = 5, June = 6, 
+enum enMonthOfYear { January = 1, February = 2, March = 3, April = 4, May = 5, June = 6, 
 	July = 7,August=8,September=9,October=10,November=11,December=12 };
-enMonth enReadMonth()
+enMonthOfYear enReadMonthOfYear()
 {
-	return (enMonth)ReadNumberInRange("enter the number Month (1 to 12):", 1, 12);
+	return (enMonthOfYear)ReadNumberInRange("enter the number Month (1 to 12):", 1, 12);
 }
-string GetMonth(enMonth Day) {
+string GetMonthOfYear(enMonthOfYear Day) {
 	switch (Day)
 	{
-	case enMonth::April:
+	case enMonthOfYear::April:
 		return "April";
-
-	case enMonth::August:
+	case enMonthOfYear::August:
 		return "August";
-	case enMonth::December:
+	case enMonthOfYear::December:
 		return "December";
-	case enMonth::February:
+	case enMonthOfYear::February:
 		return "February";
-	case enMonth::January:
+	case enMonthOfYear::January:
 		return "January";
-	case enMonth::July:
+	case enMonthOfYear::July:
 		return "July";
-	case enMonth::June:
+	case enMonthOfYear::June:
 		return "June";
-	case enMonth::March:
+	case enMonthOfYear::March:
 		return "March";
-	case enMonth::May:
+	case enMonthOfYear::May:
 		return "May";
-	case enMonth::November:
+	case enMonthOfYear::November:
 		return "November";
-	case enMonth::October:
+	case enMonthOfYear::October:
 		return "October";
-	case enMonth::September:
+	case enMonthOfYear::September:
 		return "September";
 	default:
 		return "not a valid Day";
 	}
 }
 
+
+//--------------------------------------------------------
+//#46
+void PrintLettersAtoZ() {
+	for (int i = 65; i <= 90; i++) {
+		cout << char(i) << endl;
+	}
+}
+
+
+
+//--------------------------------------------------------
+//#47
+float MonthlyInsallment(short LoanaAmount,short MonthlyPayment) {
+	return (float)LoanaAmount / MonthlyPayment;
+} 
+
+//--------------------------------------------------------
+//#48
+float InstallmentPeriodInMonths(short LoanaAmount, short HowMonyMonth) {
+	return (float)LoanaAmount / HowMonyMonth;
+}
+
+//--------------------------------------------------------
+//#48
+bool Login() {
+	string Read;
+	short Trying = 1;
+	do
+	{
+		if (Trying == 4) { return false; }
+
+
+		Read = to_string(ReadPositiveNumber("Please enter PIN code Trying ("+to_string(Trying)+"):"));
+		if (Read == "1234") {
+			
+			return true;
+		}
+		else
+		{
+			cout << "\nWrong PIN\n";
+			system("color 4F");
+		}
+		Trying++;
+	} while (Read!="1234");
+
+}
 int main()
 {
 
 	// This line of code extracts the full name
 	/*
-	PrintFullName(GetFullName(stNameReadName()));
+	PrintFullName(GetFullName(StName_ReadName()));
 	*/
 
 	//this code Receives a number and gives you Hilf of that number
@@ -890,12 +936,17 @@ int main()
 	PrintNumber("Average is : ", CalculaterAverage(num1, num2, num3));
 	*/
 
+	//----------------------------------------------------
+	// #8
 	//this code check the Avrage is pass or not 
 	/*
 	short Avrage = ReadNumber("enter the Avrage?");
 	PrintResults(enCheckAverage(Avrage));
 	*/
 
+
+	//--------------------------------------------------------
+	// #12
 	//this code print the bigger number
 	/*
 	short num1, num2;
@@ -904,6 +955,10 @@ int main()
 	PrintNumber("Large numbe is :", MaxOf2Number(num1, num2));
 	*/
 
+
+
+	//--------------------------------------------------------
+	// #13
 	//this cod print the Max number between 3 numbers
 	/*
 	short num1, num2,num3;
@@ -913,6 +968,11 @@ int main()
 	PrintNumber("Large numbe is :", MaxOf3Number(num1, num2,num3));
 	*/
 
+
+
+
+	//--------------------------------------------------------
+	// #14
 	//this code do be swap between two numbers
 	/*
 	float num1, num2;
@@ -931,6 +991,8 @@ int main()
 	*/
 
 
+	//--------------------------------------------------------
+    // #15
 	//this code calculate rctangl area
 	/*
 	float Lenth, Width;
@@ -940,48 +1002,72 @@ int main()
 	PrintNumber("the calculat rctangl area is :", CalculateRectangArea(Lenth, Width));
 	*/
 
+
+
+	//--------------------------------------------------------
+	// #16
 	//this code calculate rctangl area by diagonal and Side 
 	/*
 	PrintNumber( "the calculat rctangl area by Diagonal and Side:",CaluculateRectangleAreaByDiagonalAndSideArea(5, 40));
 	*/
-	 
+
+	//--------------------------------------------------------
+	// #17
 	//this code calculate triangle area by Height and Base
 	/*
 	PrintNumber("the calculat triangle area is :", CaluculaterTriangleArea(10, 8));
 	*/
 
+
+	//--------------------------------------------------------
+	// #18
 	//this code calculate circle area by Radius
 	/*
 	PrintNumber("the calculat circle area is :", CalculateCircleArea(5));
 	*/
 
-
+	//--------------------------------------------------------
+	//#19
     //this code calculate circle area by Diameter
     /*
      PrintNumber("the calculat circle area by Diameter is :", CalculateCircleByDiameter(10));
     */
 
+
+	//--------------------------------------------------------
+	//#20
     //this code calculate circle insid squar area
     /*
     PrintNumber("the calculat circle insid squar area is :", CalculateCircleInsidSequare(10));
 	*/
 
+
+	//--------------------------------------------------------
+	//#21
     //this code calculate circle area by Circumference
 	/*
 	PrintNumber("the calculat circle area by Circumference is :", CalculateCircleByCircumference(20));
 	*/
-	
+
+
+	//--------------------------------------------------------
+	//#22
 	//this code calculate circle area by Isosceles Triangle
     /*
     PrintNumber("the calculat circle area by Isosceles Triangle is :", CalculateCircleByIsoscelesTriangle(20, 10));
 	*/
-
+	
+	
+	//--------------------------------------------------------
+	//#23
 	//this code calculate circle area by Arbitrary Triangle
     /*
     PrintNumber("the calculat circle area by Arbitrary Triangle is :", CalculateCircleAreaByArbitraryTriangle(5, 6, 7));
     */
 
 
+	//--------------------------------------------------------
+	//#24
 	//this code validate number in range
     /*
     short number = ReadNumber("enter the number ?");
@@ -989,12 +1075,19 @@ int main()
     PrintNumber("", number);
 	*/
 
+
+
+	//--------------------------------------------------------
+	//#25
 	//this code read number in range
 	/*
 	short numberInRange = readNumberInLoop("enter the number between 10 and 20 ?", 10, 20);
 	PrintNumber("the number in range is :", numberInRange);
 	*/
-     
+
+
+	//--------------------------------------------------------
+    //#26
 	/*
     short Number = ReadNumber("enter the number ?");//this code read number in range
     PrintRangeFrom1toN(Number);//this code print range from 1 to N
@@ -1004,29 +1097,39 @@ int main()
     
 
 
-
+    //--------------------------------------------------------
+    //#28
 	/*
     short Number = ReadNumber("enter the number ?");//this code read number in range
     PrintNumber("the sum Odd Number is N to 0:",SumOddNumbersFrom1ToN(Number));
     */
 
+
+	//--------------------------------------------------------
+	//#29
     /*
 	short Number = ReadNumber("enter the number ?");//this code read number in range
 	PrintNumber("the sum Even Number is N to 0:", SumEvenNumbersFrom1ToN(Number));
 	*/
 
 
+	 //--------------------------------------------------------
+	 //#30
      /*
      PrintNumber("the sum Even Number is N to 0:", FactorialOfNumber(ReadPositiveNumber("enter the number ?")));
      */
 
 
 
+	 //--------------------------------------------------------
+	 //#32
      /*
      PrintNumber("the Pow is number 2:",Power(ReadPositiveNumber("enther the number is Positive:"), ReadPositiveNumber("enter the Power:")));
      */
 
 
+	 //--------------------------------------------------------
+	 //#33
      //هذا الكود ياخذ الدرجه بين 0 الى 100 ويعطي المستخدم تقييم الدرجة 
 	 /*
      short grade = ReadNumberInRange("enter a grade between 0 and 100 :",0,100);
@@ -1035,12 +1138,19 @@ int main()
 	 */
 	 
 
+
+	 //--------------------------------------------------------
+	 //#34
      /*
      int ToataSalary=ReadNumber("enter the Total Salary:");//قرائة اجمالي المبيعات للموظف
 	 PrintNumber("The Percantage is :", EmployeePercentage(ToataSalary));//طباعة نسبة العموله للموظف
      PrintNumber("The Commission is :", EmployeeCommission(ToataSalary));//طباعة العموله للموضف بحسب اجمالي المبيعات التي ادخلت 
 	 */
 
+
+
+	 //--------------------------------------------------------
+	 //#35
      /*
      float Pennies=CalculateTotalPennies(ReadPositiveNumber("how mach you have from the Pennies : "),
 		 ReadPositiveNumber("how mach you have from the Nickels : "), 
@@ -1067,18 +1177,25 @@ int main()
 
 
 
-
+	 //--------------------------------------------------------
+	 //#36
      /*
      PrintNumber("10*5=", Calculater((enOPerationType)'*', 10, 5));
      PrintNumber("10/5=", Calculater((enOPerationType)'/', 10, 5));
      PrintNumber("10+5=", Calculater((enOPerationType)'+', 10, 5));
      PrintNumber("10-5=", Calculater((enOPerationType)'-', 10, 5));
 	 */
-	 
+
+
+	 //--------------------------------------------------------
+     //#30
      /*
      PrintPrimeNumber(ReadPositiveNumber("enter Positive Number :"));
 	 */
 
+
+	 //--------------------------------------------------------
+	 //#39
      /*
      PrintRemainder(CalculateRemainder(20,10));
 	 */
@@ -1130,10 +1247,44 @@ int main()
 	 //--------------------------------------------------------
 	 //#45
 	 /*
-	 cout<< GetMonth(enReadMonth());
+	 cout<< GetMonthOfYear(enReadMonthOfYear());
 	 */
 
+	 //--------------------------------------------------------
+	 //#46
+	 /*
+	 PrintLettersAtoZ();
+	 */
 
+	 //--------------------------------------------------------
+	 //#47
+     /*
+     short LoanAmount=  ReadPositiveNumber("Please Enter Loan Amount?");
+     short Installment= ReadPositiveNumber("Please Enter Montly Installment?");
+     cout<< InstallmentPeriodInMonths(LoanAmount, Installment);
+	 */
+
+	 //--------------------------------------------------------
+	 //#48
+	 /*
+	 short LoanAmount=  ReadPositiveNumber("Please Enter Loan Amount?");
+	 short HowManyMonth= ReadPositiveNumber("How Many Months?");
+	 cout<<"\nMonthly Installment = " << MonthlyInsallment(LoanAmount, HowManyMonth);
+	 */
+
+	 //--------------------------------------------------------
+	 //#50
+     /*
+     if (Login()) 
+	 {
+	    system("color 2F");
+	    cout << "\nYour account balance is " << 7500 << endl;
+     }
+	 else
+	 {
+	    cout<<"\nYour card blocked call the bank for help.";
+     }
+     */
 
 	return 0;
 
