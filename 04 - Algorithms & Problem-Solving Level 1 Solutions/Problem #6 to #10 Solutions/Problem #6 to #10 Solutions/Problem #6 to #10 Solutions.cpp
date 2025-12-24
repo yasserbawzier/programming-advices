@@ -525,7 +525,7 @@ short ReadNumberInRange(string Massage, short From, short to) {
 		cout << Massage;
 		cin >> number;
 
-	} while (number>From||number<to);
+	} while (number<From||number>to);
 	return number;
 }
 
@@ -779,6 +779,76 @@ void TotalSecondsOfDays_Hours_minutes(int seconds) {
 	seconds -= secondsInMinutes(minuts);
 	cout << days << ":" << Hours << ":" << minuts << ":" << seconds << endl;
 
+}
+
+//--------------------------------------------------------
+//#44
+enum enWeekDay{SunDay=1,MonDay=2,TuesDay=3,WednesDay=4,ThursDay=5,FriDay=6,SaturDay=7};
+enWeekDay enReadDayOfWeek() 
+{
+return (enWeekDay)ReadNumberInRange("enter the number day (SunDay=1,MonDay=2,TuesDay=3,WednesDay=4,ThursDay=5,FriDay=6,SaturDay=7):", 1, 7);	
+}
+string GetDayOfWeek(enWeekDay Day) {
+	switch (Day)
+	{
+	case enWeekDay::FriDay:
+		return "FriDay";
+	case enWeekDay::MonDay:
+		return "MonDay";
+	case enWeekDay::SaturDay:
+		return"SaturDay";
+	case enWeekDay::SunDay:
+		return "SunDay";
+	case enWeekDay::ThursDay:
+		return"ThursDay";
+	case enWeekDay::TuesDay:
+		return"TuesDay";
+	case enWeekDay::WednesDay:
+		return "WednesDay";
+	default:
+		return "not a valid Day";
+	}
+}
+
+//--------------------------------------------------------
+//#45
+enum enMonth { January = 1, February = 2, March = 3, April = 4, May = 5, June = 6, 
+	July = 7,August=8,September=9,October=10,November=11,December=12 };
+enMonth enReadMonth()
+{
+	return (enMonth)ReadNumberInRange("enter the number Month (1 to 12):", 1, 12);
+}
+string GetMonth(enMonth Day) {
+	switch (Day)
+	{
+	case enMonth::April:
+		return "April";
+
+	case enMonth::August:
+		return "August";
+	case enMonth::December:
+		return "December";
+	case enMonth::February:
+		return "February";
+	case enMonth::January:
+		return "January";
+	case enMonth::July:
+		return "July";
+	case enMonth::June:
+		return "June";
+	case enMonth::March:
+		return "March";
+	case enMonth::May:
+		return "May";
+	case enMonth::November:
+		return "November";
+	case enMonth::October:
+		return "October";
+	case enMonth::September:
+		return "September";
+	default:
+		return "not a valid Day";
+	}
 }
 
 int main()
@@ -1049,6 +1119,22 @@ int main()
      /*
 	 TotalSecondsOfDays_Hours_minutes(193535);
 	 */
+
+
+	 //--------------------------------------------------------
+	 //#44
+     /*
+	 cout<<GetDayOfWeek(enReadDayOfWeek());
+	 */
+
+	 //--------------------------------------------------------
+	 //#45
+	 /*
+	 cout<< GetMonth(enReadMonth());
+	 */
+
+
+
 	return 0;
 
 }
