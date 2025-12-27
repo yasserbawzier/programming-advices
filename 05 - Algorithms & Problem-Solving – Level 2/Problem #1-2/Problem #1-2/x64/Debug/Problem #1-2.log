@@ -1,4 +1,0 @@
-﻿  Problem #1-2.cpp
-C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem #1-2\Problem #1-2\Problem #1-2.cpp(116,15): warning C4244: 'initializing': conversion from 'double' to 'short', possible loss of data
-C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem #1-2\Problem #1-2\Problem #1-2.cpp(144,26): warning C4244: 'argument': conversion from 'float' to 'short', possible loss of data
-  Problem #1-2.vcxproj -> C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem #1-2\x64\Debug\Problem #1-2.exe
