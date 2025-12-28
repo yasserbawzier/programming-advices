@@ -528,7 +528,18 @@ void PrintAllDigitsFrequencey(int Number)
 //Problem 10 / 2
 //{
 //الحل موجود في المين 
+//}
 
+//-------------------------------------------------
+//Problem 11 / 2
+//{
+bool IsPalindromeNumber(int number) {
+    int number2 = ReverseNumber(number);
+    if (number2 == number)
+        return true;
+    else
+        return false;
+}
 int main()
 {
     //-------------------------------------------------
@@ -595,5 +606,12 @@ int main()
     //Problem 10 / 2
     //PrintDigits(ReverseNumber(123456));
 
-
+     //-------------------------------------------------
+    //Problem 11 / 2
+    /*
+    if (IsPalindromeNumber(ReadPositiveNumber("please enter a Positive number?")))
+        cout<<"\nYes ,it is a palindrom number.\n";
+    else
+        cout<<"\nNo , it is Not a Palindrome number.\n";
+    */
 }
