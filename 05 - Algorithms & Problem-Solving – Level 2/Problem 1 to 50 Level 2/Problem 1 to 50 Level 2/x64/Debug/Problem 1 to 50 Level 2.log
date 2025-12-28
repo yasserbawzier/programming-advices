@@ -1,0 +1,8 @@
+﻿  Problem 1 to 50 Level 2.cpp
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(117,15): warning C4244: 'initializing': conversion from 'double' to 'short', possible loss of data
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(145,26): warning C4244: 'argument': conversion from 'float' to 'short', possible loss of data
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(184,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(309,28): warning C4244: 'argument': conversion from 'float' to 'short', possible loss of data
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(420,27): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2\Problem 1 to 50 Level 2.cpp(453,12): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  Problem 1 to 50 Level 2.vcxproj -> C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Problem 1 to 50 Level 2\x64\Debug\Problem 1 to 50 Level 2.exe

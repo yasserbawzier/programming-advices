@@ -312,6 +312,7 @@ void PrintPerfectNumber(short From, short to) {
     }
 }
 
+//Answer's Ms.Moahmmed Problem 4/2 {
 
 // Function: PrintPerfectNumbersFrom1ToN
 // Purpose: Prints all perfect numbers between 1 and a given upper limit (inclusive).
@@ -329,15 +330,16 @@ void PrintPerfectNumbersFrom1ToN(int Number)
         }
     }
 }
-
+//}
 
 //-------------------------------------------------
 //Problem 5 / 2
+//{
 
-short lastNumber(short number) {
+short lastNumber(int number) {
     return number % 10;
 }
-void Print(short number) {
+void PrintNumbers(short number) {
 
     do
     {
@@ -346,6 +348,187 @@ void Print(short number) {
 
     } while (number != 0);
 }
+//}
+//Answer's Ms.Moahmmed Problem 5/2 {
+
+// Function: PrintDigits
+// Purpose: Prints the digits of a given number in reverse order, one digit per line.
+//          It extracts each digit from the number using the modulo operator and then reduces the number.
+// Parameter: Number - the positive integer whose digits are to be printed.
+void PrintDigits(int Number)
+{
+    int Sum = 0, Remainder = 0; // Initialize variables. Although 'Sum' is declared, it is not used in this function.
+
+    // Continue looping while there are digits left in Number.
+    while (Number > 0)
+    {
+        Remainder = Number % 10; // Extract the last digit of Number.
+        Number = Number / 10;    // Remove the last digit from Number.
+        cout << Remainder << endl;  // Print the extracted digit on a new line.
+    }
+}
+
+//}
+
+//-------------------------------------------------
+//Problem 6 / 2
+//{
+//يجمع ارقام الرقم مثال لو ادخلت 1234 يقوم بجمع 1+2+3+4 يساوي 10 
+short SumOfDigits(short number) {
+    short Sum = 0;
+    while (number != 0)
+    {
+        Sum += lastNumber(number);
+        number = number / 10;
+
+    } 
+    return Sum;
+}
+//}
+
+
+
+
+//-------------------------------------------------
+//Problem 7 / 2
+//{
+//يعكس الرقم مثلا لو ادخلت 147 يقوم بعكسيه واعطائة لك 741
+int ReverseNumber(int number) {
+    int swap = 0;
+    while (number != 0)
+    {
+        swap *= 10;
+        swap += lastNumber(number);
+        number = number / 10;
+
+    } 
+    return swap;
+}
+//}
+
+//-------------------------------------------------
+//Problem 8 / 2
+//{
+
+//في هذا الفنكشن يقوم بعد كم مره تم تكرار الرقم الذي يحدده المستخدم 
+// مثلا لو ادخل 122322 وادخل 2 يعطيه 4 وهي عدد المرات التي تكرر فيها الرقم 2
+short Frequency(double number, short digit) {
+    short Digit = 0;
+    short sum = 0;
+    while (number != 0)
+    {
+        Digit= lastNumber(number);
+        if (digit == Digit) {
+            sum = sum + 1;;
+        }
+      
+        number = number / 10;
+
+    }
+    return sum;
+}
+//}
+
+//-------------------------------------------------
+//Problem 9 / 2
+//{
+//هذا الفنكشن يقوم بحذف الرقم الذي يحدده العميل من الرقم المدخل 
+//مثلا ادخل رقم 12428512 وادخل دجت 2 الناتج 15841المهم انه سحذف الدجت ويعطيك الرقم بالمعكوس من غير الدجت المحدد
+int deleteDigit( int number,short digit) {
+    
+    double number2=0;
+    short num;
+    while (number != 0)
+    {
+        num=lastNumber(number);
+        
+        if ( num!= digit)
+        {
+            number2 = (number2*10)+num;
+
+        }
+        number = number / 10;
+        
+    }
+    return number2;
+}
+//هذا الروسيجر يعطيك كم مرة تكرر كل رقم مكون منه هذا الرقم 
+// مثلا لو ادخلت 11244466 الناتج 
+//Digit 6 Frequency is 2
+//Digit 1 Frequency is 2
+//Digit 4 Frequency is 3
+//Digit 2 Frequency is 1
+void HowOftenEachNumberIsRepeatd( int number) {
+    short num ;
+   
+    while (number != 0) {
+        num=lastNumber(number);
+        cout << "Digit " << num << " Frequency is " << Frequency(number, num) << endl;
+        number=deleteDigit(number,num);
+
+   }
+}
+
+
+
+
+// Function: CountDigitFrequency
+// Purpose: Counts how many times a specific digit appears in the given number.
+//          The function extracts each digit from the number and increments the count when a match is found.
+// Parameters:
+//    DigitToCheck - the digit (as a short) to look for.
+//    Number - the main number in which the frequency of the digit is to be counted.
+// Returns: The frequency (count) of the specified digit in the number.
+int CountDigitFrequency(short DigitToCheck, int Number)
+{
+    int Freq = 0;       // Initialize frequency counter to zero.
+    int Remainder = 0;  // Variable to store the digit extracted from the number.
+
+    // Process each digit until the number becomes 0.
+    while (Number > 0)
+    {
+        Remainder = Number % 10;  // Extract the last digit from the number.
+        Number = Number / 10;     // Remove the last digit from the number.
+
+        // If the extracted digit matches the digit we're checking, increment the frequency counter.
+        if (DigitToCheck == Remainder)
+        {
+            Freq++;
+        }
+    }
+    return Freq;  // Return the total count of the specified digit.
+}
+
+// Function: PrintAllDigitsFrequencey
+// Purpose: Prints the frequency of each digit (0-9) present in the given number.
+// Parameter: Number - the number for which digit frequencies are to be printed.
+void PrintAllDigitsFrequencey(int Number)
+{
+    cout << endl;  // Print an empty line for formatting.
+
+    // Loop through all digits from 0 to 9.
+    for (int i = 0; i < 10; i++)
+    {
+        short DigitFrequency = 0;                         // Variable to hold frequency for the current digit.
+        DigitFrequency = CountDigitFrequency(i, Number);    // Get the frequency of digit 'i' in the number.
+
+        // Only print the result if the digit appears at least once.
+        if (DigitFrequency > 0)
+        {
+            cout << "Digit " << i << " Frequencey is "  // Print the digit and its frequency.
+                << DigitFrequency << " Time(s).\n";
+        }
+    }
+}
+//}
+
+
+
+//-------------------------------------------------
+//Problem 10 / 2
+//{
+//الحل موجود في المين 
+
 int main()
 {
     //-------------------------------------------------
@@ -373,5 +556,44 @@ int main()
 
 
 
-    Print(1234);
+    //-------------------------------------------------
+    //Problem 5 / 2
+    //PrintNumbers(1234);
+    // Call ReadPositiveNumber to get a positive integer from the user and pass it to PrintDigits.
+    //PrintDigits(ReadPositiveNumber("Please enter a positive number?"));
+
+
+    //-------------------------------------------------
+    //Problem 6 / 2
+    //cout<<SumOfDigits(1265);
+
+
+
+
+    //-------------------------------------------------
+    //Problem 7 / 2
+    //cout<< ReverseNumber(1234);
+
+
+    //-------------------------------------------------
+    //Problem 8 / 2
+    //cout<<  Frequency(12221222,2);
+
+    //-------------------------------------------------
+    //Problem 9 / 2
+    
+    //HowOftenEachNumberIsRepeatd(11244466);
+    
+    //Answer's Mohammed {
+    // Prompt the user to enter a number.
+    //int Number = ReadPositiveNumber("Please enter the a number?");
+    // Print the frequency of each digit (0-9) in the entered number.
+    //PrintAllDigitsFrequencey(Number);
+    //}
+
+     //-------------------------------------------------
+    //Problem 10 / 2
+    //PrintDigits(ReverseNumber(123456));
+
+
 }
