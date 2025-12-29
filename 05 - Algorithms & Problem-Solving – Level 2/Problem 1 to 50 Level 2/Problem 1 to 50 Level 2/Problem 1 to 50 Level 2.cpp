@@ -533,6 +533,8 @@ void PrintAllDigitsFrequencey(int Number)
 //-------------------------------------------------
 //Problem 11 / 2
 //{
+//هذا بيتأكد ان الرقم بالندر نمبر او لا 
+//البالندرم نمبر هو الرقم الذي تقراء من اليمن إلى اليسار ومن اليسار الى اليمن نفس الرقم 
 bool IsPalindromeNumber(int number) {
     int number2 = ReverseNumber(number);
     if (number2 == number)
@@ -540,6 +542,172 @@ bool IsPalindromeNumber(int number) {
     else
         return false;
 }
+
+//-------------------------------------------------
+//Problem 12 / 2
+//{
+//مثلا لو ادخلت 5
+//هاكذا ستكون النتيجه 
+//55555
+//4444
+//333
+//22
+//1
+void PrintInvertedPatternNumber(short number) {
+    for (short i = number; i > 0; i--) {
+        for (short j = 1; j <= i; j++) {
+            cout << i  ;
+        }
+        cout << "\n";
+    }
+}
+
+
+//-------------------------------------------------
+//Problem 13 / 2
+//{
+//مثلا لو ادخلت 5
+//هاكذا ستكون النتيجه 
+//1
+//22
+//333
+//4444
+//55555
+void PrintNumberPattern(short number) {
+    for (short i = 1; i <= number; i++) {
+        for (short j = 1; j <= i; j++) {
+            cout << i;
+        }
+        cout << "\n";
+    }
+}
+
+
+//-------------------------------------------------
+//Problem 14 / 2
+
+
+//{
+//مثلا لو ادخلت 5
+//هاكذا ستكون النتيجه 
+//EEEEE
+//DDDD
+//CCC
+//BB
+//A
+void PrintLetterPattern(short number) {
+    
+    for (short i = number; i >= 1; i--) {
+        for (short j = 1; j <= i; j++) {
+            char leter = 64 + i;
+            
+            cout << leter;
+        }
+        cout << "\n";
+    }
+}
+
+//Answer's Ms.Moahmmed Problem 14/2 {
+// Function: PrintInvertedLetterPattern
+// Purpose: Prints an inverted letter pattern using uppercase letters.
+//          The pattern starts with the letter corresponding to ASCII code (65 + Number - 1)
+//          and decrements down to 'A' (ASCII 65). In each row, the letter is printed
+//          a decreasing number of times, starting from 'Number' times on the first row,
+//          down to 1 time on the last row.
+// Parameter: Number - the positive integer that determines the height of the pattern
+//                     and the number of times the first (highest) letter is printed.
+void PrintInvertedLetterPattern(int Number)
+{
+    cout << "\n";  // Print an empty line for formatting.
+
+    // Outer loop: 'i' represents the ASCII code for the current letter.
+    // It starts at (65 + Number - 1) which is the highest letter to be printed,
+    // and decrements down to 65 ('A').
+    for (int i = 65 + Number - 1; i >= 65; i--)
+    {
+        // Calculate the number of times to print the current letter.
+        // When i = 65 + Number - 1, (65 + Number - 1 - i) equals 0,
+        // so the inner loop runs 'Number' times.
+        // For each subsequent row, this value increases, reducing the count by 1 each time.
+        for (int j = 1; j <= Number - ((65 + Number - 1) - i); j++)
+        {
+            cout << char(i);  // Print the current letter (converted from its ASCII code).
+        }
+
+        cout << "\n";  // After printing the current row, move to the next line.
+    }
+}
+
+//}
+
+
+//-------------------------------------------------
+//Problem 15 / 2
+
+
+//{
+//مثلا لو ادخلت 5
+//هاكذا ستكون النتيجه 
+//A
+//BB
+//CCC
+//DDDD
+//EEEEE
+void PrintLettersAscending(short number) {
+    for (short i = 65; i <= 64+number; i++) {
+        for (short j = 65; j <= i; j++) {
+            cout << (char)i;
+        }
+        cout << "\n";
+    }
+}
+
+//}
+//-------------------------------------------------
+//Problem 16 / 2
+//{
+//طباعة احتمالات 3 احرف من جميع احرف اللغة الانجليزيزة 
+void PrintAllPossibleCharacters() {
+    for (short i = 65; i <= 90; i++) {
+        for (short u = 65; u <= 90; u++) {
+            for (short j = 65; j <= 90; j++) {
+                cout << (char)i << (char)u << (char)j;
+                cout << "\n";
+            }
+        }
+        cout << "\n***************************************\n";
+    }
+}
+//}
+
+
+
+bool AllPossibleCharacters(string Password) {
+    string word = "";
+    int trial = 0;
+    for (short i = 65; i <= 90; i++) {
+        for (short u = 65; u <= 90; u++) {
+            for (short j = 65; j <= 90; j++) {
+                word = word + char(i);
+                word = word + char(u);
+                word = word + char(j);
+               if (word == Password) {
+                   cout << "\nPasswoerd is " << word << endl;
+                   cout << "found ofter " << trial << " Triall(s)\n";
+                   return true;
+               }
+            
+               trial++;
+               cout << "Trial [" << trial << "]: " << word << endl;
+               word = "";
+            }
+        }
+
+    }
+    return false;
+}
+
+ 
 int main()
 {
     //-------------------------------------------------
@@ -614,4 +782,35 @@ int main()
     else
         cout<<"\nNo , it is Not a Palindrome number.\n";
     */
+
+
+
+    //-------------------------------------------------
+    //Problem 12 / 2
+    //PrintInvertedPatternNumber(ReadPositiveNumber("please enter a positive number?"));
+
+    //-------------------------------------------------
+    //Problem 13 / 2
+    // PrintNumberPattern(5);
+
+
+    //-------------------------------------------------
+    //Problem 14 / 2
+    //PrintLetterPattern(7);
+    
+    // Prompt the user to enter a positive number and use it to print the inverted letter pattern.
+    //PrintInvertedLetterPattern(ReadPositiveNumber("Please enter a positive number?"));//Answer's Mohammed 
+
+
+    //-------------------------------------------------
+    //Problem 15 / 2
+   // PrintLettersAscending(5);
+  
+    
+
+    //-------------------------------------------------
+    //Problem 16 / 2
+    //PrintAllPossibleCharacters();
+
+AllPossibleCharacters("AAF");
 }
