@@ -663,6 +663,8 @@ void PrintLettersAscending(short number) {
 }
 
 //}
+
+
 //-------------------------------------------------
 //Problem 16 / 2
 //{
@@ -682,7 +684,12 @@ void PrintAllPossibleCharacters() {
 
 
 
-bool AllPossibleCharacters(string Password) {
+//-------------------------------------------------
+//Problem 17 / 2
+//{
+//هذا يقوم بادخال جميع حالات الأحرف الانجليزية حتى يصل الى الحالة المدخله له 
+//الحالات مكونه من ثلاث احرف كبتل فقط 
+bool GuessPassword(string Password) {
     string word = "";
     int trial = 0;
     for (short i = 65; i <= 90; i++) {
@@ -706,8 +713,56 @@ bool AllPossibleCharacters(string Password) {
     }
     return false;
 }
+//}
 
+//-------------------------------------------------
+//Problem 18 / 2
+//{
+// You can use this function to read any text
+string ReadText(string text) {
+    string textcin;
+    cout << text << endl;
+    getline(cin, textcin);
+    return textcin;
+}
+// To encrypt any character
+//enter : A
+//Output : according to EncryptionKy
+char encryptChar(char littel,short EncryptionKy) {
+    return ((short)littel)+ EncryptionKy;
+}
+// يقوم الفنكشن بتجفير الجمله اتي يتم ادخالها له حسب النكربشن كي 
+string getEncryption(string Peasword,short EncryptionKey) {
+    string Encryption = "";
  
+    for (short i = 0; i < Peasword.length(); i++) {
+    
+        Encryption = Encryption + encryptChar(Peasword[i], EncryptionKey);
+    }
+    return Encryption;
+}
+// يقوم بفك شفرة اي جمله بحسب الانكربشن كي المدخل فيها 
+string getDecryption(string Peasword, short EncryptionKey) {
+    string Encryption = "";
+
+    for (short i = 0; i < Peasword.length(); i++) {
+        Encryption = Encryption + encryptChar(Peasword[i], -EncryptionKey);
+    }
+    return Encryption;
+}
+
+
+//-------------------------------------------------
+//Problem 19 / 2
+
+
+int RandomNumber(int From, int To)
+{
+    // Generate a random number between 0 and (To - From) using rand(),
+    // then add From to shift the range to [From, To].
+    int randNum = rand() % (To - From + 1) + From;
+    return randNum;  // Return the generated random number.
+}
 int main()
 {
     //-------------------------------------------------
@@ -811,6 +866,17 @@ int main()
     //-------------------------------------------------
     //Problem 16 / 2
     //PrintAllPossibleCharacters();
+    
+    //-------------------------------------------------
+    //Problem 17 / 2
+    //GuessPassword("FFA");
 
-AllPossibleCharacters("AAF");
+
+
+    string name = ReadText("neter your name:");
+    const short EncryptionKey=2;
+    cout << "\nText Before Encryption :" << name << endl;
+    cout <<"Text After Encryption :"<< getEncryption(name, EncryptionKey) << endl;
+    cout <<"Text After Decryption :" << getDecryption(getEncryption(name, EncryptionKey), EncryptionKey) << endl;
+
 }
