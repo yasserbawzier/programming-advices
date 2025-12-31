@@ -732,7 +732,7 @@ char encryptChar(char littel,short EncryptionKy) {
     return ((short)littel)+ EncryptionKy;
 }
 // يقوم الفنكشن بتجفير الجمله اتي يتم ادخالها له حسب النكربشن كي 
-string getEncryption(string Peasword,short EncryptionKey) {
+string Encryption(string Peasword,short EncryptionKey) {
     string Encryption = "";
  
     for (short i = 0; i < Peasword.length(); i++) {
@@ -742,9 +742,8 @@ string getEncryption(string Peasword,short EncryptionKey) {
     return Encryption;
 }
 // يقوم بفك شفرة اي جمله بحسب الانكربشن كي المدخل فيها 
-string getDecryption(string Peasword, short EncryptionKey) {
+string Decryption(string Peasword, short EncryptionKey) {
     string Encryption = "";
-
     for (short i = 0; i < Peasword.length(); i++) {
         Encryption = Encryption + encryptChar(Peasword[i], -EncryptionKey);
     }
@@ -873,10 +872,16 @@ int main()
 
 
 
+    //-------------------------------------------------
+    //Problem 18 / 2
+    /*
     string name = ReadText("neter your name:");
     const short EncryptionKey=2;
     cout << "\nText Before Encryption :" << name << endl;
-    cout <<"Text After Encryption :"<< getEncryption(name, EncryptionKey) << endl;
-    cout <<"Text After Decryption :" << getDecryption(getEncryption(name, EncryptionKey), EncryptionKey) << endl;
+    cout <<"Text After Encryption :"<< Encryption(name, EncryptionKey) << endl;
+    cout <<"Text After Decryption :" << Decryption(Encryption(name, EncryptionKey), EncryptionKey) << endl;
+    */
 
+    srand((unsigned)time(NULL));
+    cout<<RandomNumber(50, 80);
 }
