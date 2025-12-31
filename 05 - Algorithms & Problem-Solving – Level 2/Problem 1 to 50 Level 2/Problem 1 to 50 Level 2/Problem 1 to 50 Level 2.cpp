@@ -762,6 +762,52 @@ int RandomNumber(int From, int To)
     int randNum = rand() % (To - From + 1) + From;
     return randNum;  // Return the generated random number.
 }
+
+//-------------------------------------------------
+//Problem 20 / 2
+enum enCharType { Number = 0,CapitalLetters=1,SmallLetters=2,SpecialCharacters=3};
+
+char GetRandomCharacter(enCharType random) {
+    switch (random) {
+    case enCharType::Number:
+        return (char)RandomNumber(48, 57);
+    case enCharType::CapitalLetters:
+        return (char)RandomNumber(65, 90);
+    case enCharType::SmallLetters:
+        return (char)RandomNumber(97, 122);
+    case enCharType::SpecialCharacters:
+        return (char)RandomNumber(33, 47);
+    }
+}
+
+//-------------------------------------------------
+//Problem 21 / 2
+string GenerateWord(enCharType charType,short Length  ) {
+    string text = "";
+    for (short i = 0; i < Length; i++) {
+        text = text + GetRandomCharacter(charType);
+    }
+    return text;
+}
+string DeleteListChar(string text) {
+    string t = "";
+    for (short i = 0; i < text.length()-1; i++) {
+        t = t + text[i];
+ }
+    return t;
+}
+string GenerateKeys() {
+    string Key = "";
+    for (short i = 0; i < 4; i++) {
+        Key = Key + GenerateWord(enCharType::CapitalLetters,4) + "-";
+    }
+    return DeleteListChar(Key);
+}
+void printKeys(short number) {
+    for (short i = 1; i <= number; i++) {
+        cout <<"Key ["<<i<<"] : " << GenerateKeys() << endl;
+    }
+}
 int main()
 {
     //-------------------------------------------------
@@ -882,6 +928,24 @@ int main()
     cout <<"Text After Decryption :" << Decryption(Encryption(name, EncryptionKey), EncryptionKey) << endl;
     */
 
+
+    //-------------------------------------------------
+    //Problem 19 / 2
+    /*   
     srand((unsigned)time(NULL));
     cout<<RandomNumber(50, 80);
-}
+    */
+
+    //-------------------------------------------------
+    //Problem 20 / 2
+    /*
+    srand((unsigned)time(NULL));
+    cout << GetRandomCharacter(enCharType::SmallLetters) << endl;
+    cout << GetRandomCharacter(enCharType::CapitalLetters) << endl;
+    cout << GetRandomCharacter(enCharType::SpecialCharacters) << endl;
+    cout << GetRandomCharacter(enCharType::Number) << endl;
+    */
+     
+     printKeys(5);
+
+    }
