@@ -789,11 +789,20 @@ string GenerateWord(enCharType charType,short Length  ) {
     }
     return text;
 }
-string DeleteListChar(string text) {
+string DeleteListChar(string text,short Index,short length) {
+    short deleteChar = Index + length;
+    if (Index<0 || Index>text.length()+1) {
+        return "";
+    }
     string t = "";
-    for (short i = 0; i < text.length()-1; i++) {
-        t = t + text[i];
- }
+    for (short i = 0; i <= text.length(); i++) {
+        if (i >= Index && i <= deleteChar-1) {
+
+        }
+        else {
+            t = t + text[i];
+        }
+    }
     return t;
 }
 string GenerateKeys() {
@@ -801,13 +810,103 @@ string GenerateKeys() {
     for (short i = 0; i < 4; i++) {
         Key = Key + GenerateWord(enCharType::CapitalLetters,4) + "-";
     }
-    return DeleteListChar(Key);
+    return DeleteListChar(Key,Key.length()-1,1);
 }
 void printKeys(short number) {
     for (short i = 1; i <= number; i++) {
         cout <<"Key ["<<i<<"] : " << GenerateKeys() << endl;
     }
 }
+
+//-------------------------------------------------
+//Problem 22 / 2
+void ReadArea(short Number[100],short repeated)
+{
+    short count = 0;
+    do
+    {
+       
+        cout << "Element [" << count+1 << "] :";
+        cin >> Number[count];
+        count++;
+
+    } while ((count)!=repeated);
+}
+short getHowNumberRepeated(short number, short Number[100]) {
+    short count = 0;
+    for (short i = 0; i < 100; i++) {
+        if (Number[i] == number)
+        {
+            count++;
+        }
+   }
+    return count;
+}
+void printArray(short Arr[100],short numberCheck) {
+    for (short i = 0; i < numberCheck; i++) {
+        cout << Arr[i] << " ";
+    }
+}
+
+
+// Function: ReadArray
+// Purpose: Reads an array of integers from the user.
+//          First, it asks for the number of elements, then it reads each element.
+// Parameters:
+//   - arr: An integer array (with a maximum capacity of 100 elements) to store user inputs.
+//   - arrLength: A reference variable to hold the number of elements entered by the user.
+void ReadArray(int arr[100], int& arrLength)
+{
+    cout << "\nEnter number of elements:\n";
+    cin >> arrLength;  // Read the total number of elements the user wishes to input.
+
+    cout << "\nEnter array elements: \n";
+    // Loop from 0 to arrLength - 1 to read each array element.
+    for (int i = 0; i < arrLength; i++)
+    {
+        cout << "Element [" << i + 1 << "] : ";  // Display a prompt for each element (using 1-based indexing for clarity).
+        cin >> arr[i];                           // Read the current element into the array.
+    }
+    cout << endl;  // Print an extra newline for formatting.
+}
+
+// Function: PrintArray
+// Purpose: Prints the elements of an integer array separated by spaces.
+// Parameters:
+//   - arr: The array to print.
+//   - arrLength: The number of elements in the array.
+void PrintArray(int arr[100], int arrLength)
+{
+    // Loop through the array and print each element followed by a space.
+    for (int i = 0; i < arrLength; i++)
+        cout << arr[i] << " ";
+
+    cout << "\n";  // Print a newline after all elements are printed.
+}
+
+// Function: TimesRepeated
+// Purpose: Counts how many times a specified number appears in the array.
+// Parameters:
+//   - Number: The number to search for in the array.
+//   - arr: The array in which to count occurrences.
+//   - arrLength: The number of elements in the array.
+// Returns: The count of occurrences of the specified number in the array.
+int TimesRepeated(int Number, int arr[100], int arrLength)
+{
+    int count = 0;  // Initialize a counter to zero.
+    // Loop through the array indices from 0 to arrLength - 1.
+    for (int i = 0; i <= arrLength - 1; i++)
+    {
+        if (Number == arr[i])  // If the current element equals the number we're checking,
+        {
+            count++;  // Increment the counter.
+        }
+    }
+    return count;  // Return the total count.
+}
+
+
+
 int main()
 {
     //-------------------------------------------------
@@ -945,7 +1044,46 @@ int main()
     cout << GetRandomCharacter(enCharType::SpecialCharacters) << endl;
     cout << GetRandomCharacter(enCharType::Number) << endl;
     */
+    
+    
+    //-------------------------------------------------
+    //Problem 21 / 2
+    //printKeys(5);
      
-     printKeys(5);
 
-    }
+    //-------------------------------------------------
+    //Problem 22 / 2
+    //this my answer 
+    //
+    //    short number[100];
+    //    short sizeArry = ReadPositiveNumber("how many times do you want to enter number?");
+    //    ReadArea(number, sizeArry);
+    //short numberCheck = ReadPositiveNumber("Enter the number you want to check : ");
+    //cout << "Original array:";
+    //printArray(number, sizeArry);
+    //
+    //    cout<<"\n"<<numberCheck<<" is repeated "<< getHowNumberRepeated(numberCheck, number)<<" time(s)";
+    
+    //this answer's 
+    //
+    //int arr[100];      // Declare an array to hold up to 100 integers.
+    //int arrLength;     // Variable to store the number of elements in the array.
+    //int NumberToCheck; // The number whose frequency will be checked in the array.
+    //
+    //// Read array elements from the user.
+    //ReadArray(arr, arrLength);
+    //
+    //// Prompt the user to enter the number for which frequency is to be checked.
+    //NumberToCheck = ReadPositiveNumber("Enter the number you want to check: ");
+    //
+    //// Display the original array.
+    //cout << "\nOriginal array: ";
+    //PrintArray(arr, arrLength);
+    //
+    //// Display the frequency count for the specified number.
+    //cout << "\nNumber " << NumberToCheck;
+    //cout << " is repeated ";
+    //cout << TimesRepeated(NumberToCheck, arr, arrLength) << " time(s)\n";
+
+
+ }
