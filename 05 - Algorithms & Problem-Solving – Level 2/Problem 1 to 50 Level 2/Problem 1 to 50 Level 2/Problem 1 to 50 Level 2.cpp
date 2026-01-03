@@ -905,7 +905,46 @@ int TimesRepeated(int Number, int arr[100], int arrLength)
     return count;  // Return the total count.
 }
 
+//-------------------------------------------------
+//Problem 23 / 2
+void AddRandemNumArray(int arr[100],int &Length) {
+    cout << "enter the length to array:";
+    cin >> Length;
+    for (int i = 0; i < Length; i++)
+    {
+       
+        arr[i] = RandomNumber(0, 100);
+    }
 
+}
+//-------------------------------------------------
+//Problem 24 / 2
+int MaxNumberInArray(int arr[100],int Length) {
+    int LargestNum = 0;
+    for (int i = 0; i < Length; i++) {
+        
+            if (LargestNum < arr[i ])
+            {
+                LargestNum = arr[i ];
+            }
+    }
+    return LargestNum;
+   
+}
+//-------------------------------------------------
+//Problem 25 / 2
+int MinNumberInArray(int arr[100], int Length) {
+    int LargestNum=arr[0] ;
+    for (int i = 0; i < Length; i++) {
+
+        if (LargestNum > arr[i])
+        {
+            LargestNum = arr[i];
+        }
+    }
+    return LargestNum;
+
+}
 
 int main()
 {
@@ -1027,11 +1066,11 @@ int main()
     cout <<"Text After Decryption :" << Decryption(Encryption(name, EncryptionKey), EncryptionKey) << endl;
     */
 
-
+srand((unsigned)time(NULL));
     //-------------------------------------------------
     //Problem 19 / 2
     /*   
-    srand((unsigned)time(NULL));
+  
     cout<<RandomNumber(50, 80);
     */
 
@@ -1085,5 +1124,34 @@ int main()
     //cout << " is repeated ";
     //cout << TimesRepeated(NumberToCheck, arr, arrLength) << " time(s)\n";
 
+    //-------------------------------------------------
+    //Problem 23 / 2
+    /*int arr[100];
+    int lenthe;
+    AddRandemNumArray(arr, lenthe);
+    cout << "Array Elements : ";
+    PrintArray(arr,lenthe);  */
 
+
+    //-------------------------------------------------
+   //Problem 24 / 2
+    /*int arr[100];
+    int lenthe;
+    AddRandemNumArray(arr, lenthe);
+    cout << "Array Elements : ";
+    PrintArray(arr, lenthe);
+    cout << "\nMax Number is : ";
+   cout<< MaxNumberInArray(arr, lenthe);*/
+
+
+
+   //-------------------------------------------------
+  //Problem 25 / 2
+  //int arr[100];
+  //int lenthe;
+  //AddRandemNumArray(arr, lenthe);
+  //cout << "Array Elements : ";
+  //PrintArray(arr, lenthe);
+  //cout << "\nMin Number is : ";
+  //cout<<MinNumberInArray(arr, lenthe);
  }
