@@ -920,32 +920,89 @@ void AddRandemNumArray(int arr[100],int &Length) {
 //-------------------------------------------------
 //Problem 24 / 2
 int MaxNumberInArray(int arr[100],int Length) {
-    int LargestNum = 0;
+    int MaxNum = 0;
     for (int i = 0; i < Length; i++) {
         
-            if (LargestNum < arr[i ])
+            if (MaxNum < arr[i])
             {
-                LargestNum = arr[i ];
+                MaxNum = arr[i];
             }
     }
-    return LargestNum;
+    return MaxNum;
    
 }
 //-------------------------------------------------
 //Problem 25 / 2
 int MinNumberInArray(int arr[100], int Length) {
-    int LargestNum=arr[0] ;
+    int MinNum = arr[0];
     for (int i = 0; i < Length; i++) {
 
-        if (LargestNum > arr[i])
+        if (MinNum > arr[i])
         {
-            LargestNum = arr[i];
+            MinNum = arr[i];
         }
     }
-    return LargestNum;
+    return MinNum;
 
 }
+//-------------------------------------------------
+//Problem 26 / 2
+float TotalNumberInArray(int arr[100], int Length) {
+    int total = 0;
+    for (int i = 0; i < Length; i++) {
 
+        total = total + arr[i];
+    }
+    return total;
+
+}
+//-------------------------------------------------
+//Problem 27 / 2
+float ArrAverge(int Arr[100], int Length) {
+
+    return TotalNumberInArray(Arr, Length) / Length;
+}
+//-------------------------------------------------
+//Problem 28 / 2
+void CodeArr1TOArr2(int Arr1[100], int Arr2[100], int Length) {
+    for (int i = 0; i < Length; i++) {
+        Arr2[i] = Arr1[i];
+    }
+}
+//-------------------------------------------------
+//Problem 29 / 2
+
+void CodePrimNumberFromArr1TOArr2(int Arr1[100], int Arr2[100], int Length,int &Arr2Length) {
+    int index = 0;
+    for (int i = 0; i < Length; i++) {
+        if (CheckPrime(Arr1[i]) == enPrimNumber::Prim)
+        {
+            Arr2[index] = Arr1[i];
+            index++;
+        }
+    }
+    Arr2Length = index;
+   
+}
+//-------------------------------------------------
+//Problem 30 / 2
+void FillArrayWithRandomNumbers(int arr[100], int Length) {
+    for (int i = 0; i < Length; i++) {
+
+        arr[i] = RandomNumber(1, 100);
+
+    }
+}
+void SumTowArry(int Arr1[100], int Arr2[100], int Arr3[100], int Length) {
+    int index = 0;
+    for (int i = 0; i < Length; i++) {
+     
+            Arr3[i] = Arr1[i] + Arr2[i];
+        
+    }
+
+
+}
 int main()
 {
     //-------------------------------------------------
@@ -1154,4 +1211,84 @@ srand((unsigned)time(NULL));
   //PrintArray(arr, lenthe);
   //cout << "\nMin Number is : ";
   //cout<<MinNumberInArray(arr, lenthe);
- }
+
+
+   //-------------------------------------------------
+  //Problem 26 / 2
+  /*int  arr[100];
+  int lenthe;
+  AddRandemNumArray(arr, lenthe);
+  cout << "Array Elements : ";
+  PrintArray(arr, lenthe);
+  cout << "\nTotal Number is : ";
+  cout<<TotalNumberInArray(arr, lenthe);*/
+
+
+
+  //-------------------------------------------------
+//Problem 27/ 2
+  //int  arr[100];
+  //int lenthe;
+  //AddRandemNumArray(arr, lenthe);
+  //cout << "Array Elements : ";
+  //PrintArray(arr, lenthe);
+  //cout << "\nAverg Number is : ";
+  //cout << ArrAverge(arr, lenthe);
+
+  
+ 
+
+  //-------------------------------------------------
+//Problem 28/ 2
+ /* int  arr1[100],arr2[100];
+  int lenthe;
+  AddRandemNumArray(arr1, lenthe);
+  cout << "Array1 Elements : ";
+  PrintArray(arr1, lenthe);
+
+  cout << "Array2 Elements : ";
+  PrintArray(arr2, lenthe);
+
+  cout << "\nCody Arr1 to Arr2   : ";
+  CodeArr1TOArr2(arr1, arr2, lenthe);
+  cout << "\nArray2 Elements : ";
+  PrintArray(arr2, lenthe);*/
+
+
+
+  //-------------------------------------------------
+  //Problem 29/ 2
+  /*int  arr1[100],arr2[100];
+  int lenthe;
+  AddRandemNumArray(arr1, lenthe);
+  cout << "Array1 Elements : ";
+  PrintArray(arr1, lenthe);
+
+  cout << "Array2 Elements : ";
+  PrintArray(arr2, lenthe);
+  int LentheArr2;
+  cout << "\nCody PrimNumber Arr1 to Arr2   : ";
+ CodePrimNumberFromArr1TOArr2(arr1, arr2, lenthe, LentheArr2);
+  cout << "\nArray2 Elements : ";
+  PrintArray(arr2, LentheArr2);*/
+
+
+  //-------------------------------------------------
+  //Problem 30/ 2
+  /*int  arr1[100],arr2[100],arr3[100];
+  int lenthe=ReadPositiveNumber("How many elements :");
+  FillArrayWithRandomNumbers(arr1, lenthe);
+  FillArrayWithRandomNumbers(arr2, lenthe);
+  cout << "Array1 Elements : ";
+  PrintArray(arr1, lenthe);
+
+  cout << "Array2 Elements : ";
+  PrintArray(arr2, lenthe);
+
+  SumTowArry(arr1, arr2, arr3, lenthe);
+
+  cout << "Array3 Elements : ";
+  PrintArray(arr3, lenthe);*/
+
+
+}
