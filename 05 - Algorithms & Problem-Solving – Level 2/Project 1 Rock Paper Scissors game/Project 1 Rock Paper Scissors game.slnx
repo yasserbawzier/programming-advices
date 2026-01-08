@@ -1,7 +1,0 @@
-<Solution>
-  <Configurations>
-    <Platform Name="x64" />
-    <Platform Name="x86" />
-  </Configurations>
-  <Project Path="Project 1 Rock Paper Scissors game/Project 1 Rock Paper Scissors game.vcxproj" Id="f050ba93-1ddc-4792-952e-c8c049f976a4" />
-</Solution>
