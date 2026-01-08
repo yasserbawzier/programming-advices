@@ -1,0 +1,4 @@
+﻿C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppBuild.targets(548,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Teacher'sSolutionSecondProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Teacher'sSolutionSecondProject.cpp
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Teacher'sSolutionSecondProject\Teacher'sSolutionSecondProject\Teacher'sSolutionSecondProject.cpp(140,1): warning C4715: 'GenerateQueation': not all control paths return a value
+  Teacher'sSolutionSecondProject.vcxproj -> C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Teacher'sSolutionSecondProject\x64\Debug\MySolutionAfterReviewing.exe

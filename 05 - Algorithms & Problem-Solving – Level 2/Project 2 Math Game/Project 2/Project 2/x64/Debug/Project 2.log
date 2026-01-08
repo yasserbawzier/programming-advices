@@ -1,0 +1,8 @@
+﻿  Project 2.cpp
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(83,1): warning C4715: 'getOperationType': not all control paths return a value
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(64,1): warning C4715: 'getNumberQuuestionsLevel': not all control paths return a value
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(99,1): warning C4715: 'PrintOperationType': not all control paths return a value
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(145,1): warning C4715: 'gettxetLevel': not all control paths return a value
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(130,1): warning C4715: 'CorrectAnser': not all control paths return a value
+C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\Project 2\Project 2.cpp(162,1): warning C4715: 'gettxetOperationType': not all control paths return a value
+  Project 2.vcxproj -> C:\Users\y7709\source\repos\05 - Algorithms & Problem-Solving – Level 2\Project 2\x64\Debug\Project 2.exe
