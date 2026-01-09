@@ -8,11 +8,14 @@ struct stQuestions
 {
 	enLevelType Level;//مستوى الصعوبة 
 	enOperationType OperationType;//نوع العمية
-	int number1;//الرقم الاول في الامتحان
-	int number2;//الرقم الثاني في الامتحان
-	short AnswerPlayer;//اجابة المستخدم
-	int CorrectAnser;//الاجابة الصحيحه 
-	bool IsCorrect;//هل اجابة المستخدم صحيحه ام لا
+	int number1=0;//الرقم الاول في الامتحان
+	int number2=0;//الرقم الثاني في الامتحان
+	short AnswerPlayer=0;//اجابة المستخدم
+	int CorrectAnser=0;//الاجابة الصحيحه 
+	bool IsCorrect=false;//هل اجابة المستخدم صحيحه ام لا
+
+	//تم تهيئة المتغيرات داخل الستركتر لتجنب القيم العشوائية
+	//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد
 };
 
 // ستركت فيه معلومات الامتحان
@@ -24,7 +27,7 @@ struct stQuiz
 	short QuestionsCount=0;//عدد الاسألة
 	short CorrectAnswersCount=0;//عدد الاجابات الصحيحة
 	short WrongAnswersCount=0;//عدد الاجابات الخاطئة
-	bool IsPassed;//هل اجتاز الامتحان ام لا
+	bool IsPassed=false;//هل اجتاز الامتحان ام لا
 };
 
 
@@ -97,38 +100,55 @@ int SimpleCalculator(short Number1, short Number2, enOperationType OpType) {
 		return Number1 + Number2;
 	}
 }
+//هذا الفنكشن يقوم باعطاء نوع مستوى عشوائي تم استخدامه في حالة اختيار المستخدم لمستوى المكس
+//فائدتة في حالة اننا اضفنا مستوى جديد في المستقبل لن نحتاج لتعديل الفنكشنات التي تستخدم هذا الفنكشن
+//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد
+enLevelType GetRandomLevelType() {
+	
+		return (enLevelType)RandomNumber(1, 3);
+	
+}
+//هذا الفنكشن يقوم باعطاء نوع عملية عشوائي تم استخدامه في حالة اختيار المستخدم لنوع العملية المكس
+//فائدتة في حالة اننا اضفنا عملية جديدة في المستقبل لن نحتاج لتعديل الفنكشنات التي تستخدم هذا الفنكشن
+//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد
+enOperationType GetRandomOperationType() {
+	return (enOperationType)RandomNumber(1, 4);
+}
+stQuestions GenerateQueation(enLevelType Level,enOperationType Operation)//تم اضافة انم الفل وانم الأبريشر في هذا الفنكشن لكي يكون هذا الفنكشن متخصص في انشاء سؤال واحد فقط 
+//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد
+{
 
-stQuestions GenerateQueation(stQuiz &Quiz) {
 	stQuestions Question;
-	Question.Level = Quiz.Level;
-	if (Quiz.Level == enLevelType::Mix) {
-		Question.Level=(enLevelType)RandomNumber(1, 3);
+	
+	if (Level == enLevelType::Mix) {
+		Level = GetRandomLevelType();
 	}
 	
+	if (Operation == enOperationType::MixOp) {
+		Operation = GetRandomOperationType();
+	}
 
+	Question.OperationType = Operation;
 
-	switch (Question.Level) {
+	switch (Level) {
 	case enLevelType::Easy:
 	{ 
-		
-		Question.OperationType = GetOperationType(Quiz.OperationType);
+		Question.Level = Level;
 		Question.number1 = RandomNumber(1, 10);
 		Question.number2 = RandomNumber(1, 10);
 		Question.CorrectAnser = SimpleCalculator(Question.number1, Question.number2, Question.OperationType);
 		return Question;
 	}
 	case enLevelType::Med: {
-
-		Question.OperationType = GetOperationType(Quiz.OperationType);
+		Question.Level = Level;
 		Question.number1 = RandomNumber(10, 50);
 		Question.number2 = RandomNumber(10, 50);
 		Question.CorrectAnser = SimpleCalculator(Question.number1, Question.number2, Question.OperationType);
 		return Question;
 	}
 	case enLevelType::Hard: {
-
+		Question.Level = Level;
 	
-		Question.OperationType = GetOperationType(Quiz.OperationType);
 		Question.number1 = RandomNumber(50, 100);
 		Question.number2 = RandomNumber(50, 100);
 		Question.CorrectAnser = SimpleCalculator(Question.number1, Question.number2, Question.OperationType);
@@ -143,7 +163,7 @@ void GenerateQueations(stQuiz &Quizs) {
 
 	for (short Quiz=0; Quiz < Quizs.QuestionsCount; Quiz++) {
 
-		Quizs.Questions[Quiz] = GenerateQueation(Quizs);
+		Quizs.Questions[Quiz] = GenerateQueation(Quizs.Level,Quizs.OperationType);
 	}
 }
 
@@ -156,49 +176,51 @@ string GetOperation(enOperationType Operation);
 //---------
 void PrintQueastion(stQuiz Quiz, short NumberQueastion) {
 
-	cout << "Question [" << Quiz.QuestionsCount << "/" << NumberQueastion +1 << "]\n";
+	cout << "Question [" << NumberQueastion + 1 << "/" <<  Quiz.QuestionsCount << "]\n";
 	cout << Quiz.Questions[NumberQueastion].number1 << endl;
 	cout << Quiz.Questions[NumberQueastion ].number2<< " " << GetOperation(Quiz.Questions[NumberQueastion].OperationType) << endl;
-	cout << "------------------------------------------\n";
+	cout << "----------------------------------\n";
 
 }
-short ReadShort() {
-	short number;
-	cin >> number;
-	return number;
+//هذا الفنكشن يقوم بتصحيح اجابة المستخدم
+//وتمت الاستفادة منه في حالة اننا نريد تصحيح اجابة سؤال معين فقط
+//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد
+void CorrectTheQuestionAnswer(stQuiz& Quiz, short QuestionNumber) {
+	if (Quiz.Questions[QuestionNumber].CorrectAnser == Quiz.Questions[QuestionNumber].AnswerPlayer)
+	{
+		Quiz.Questions[QuestionNumber].IsCorrect = true;
+		cout << "Correct Answer (-:\n";
+		Quiz.CorrectAnswersCount++;
+	}
+	else {
+		Quiz.Questions[QuestionNumber].IsCorrect = false;
+		cout << "Worng Answer )-:\n";//طباعة هذا عندما يكون الجواب خاطأ
+		cout << "the right answer is:" << Quiz.Questions[QuestionNumber].CorrectAnser << endl;//طباعة الجواب الصحيح للمستخدم
+		Quiz.WrongAnswersCount++;
+	}
 }
+
 void ReadAnswersPlayer(stQuiz &Quiz)
 {
 	for (short Queastion = 0; Queastion < Quiz.QuestionsCount; Queastion++)
 	{
 		PrintQueastion(Quiz, Queastion);
-		Quiz.Questions[Queastion].AnswerPlayer = ReadShort();
-		 
-		if (Quiz.Questions[Queastion].CorrectAnser == Quiz.Questions[Queastion].AnswerPlayer)
-		{
-			Quiz.Questions[Queastion].IsCorrect = true;
-			cout << "Correct Answer (-:\n";
-			Quiz.CorrectAnswersCount++;
-		}
-		else {
-			Quiz.Questions[Queastion].IsCorrect = false;
-			cout << "Worng Answer )-:\n";//طباعة هذا عندما يكون الجواب خاطأ
-			cout << "the right answer is:" << Quiz.Questions[Queastion].CorrectAnser << endl;//طباعة الجواب الصحيح للمستخدم
-			Quiz.WrongAnswersCount++;
-		}
+		cin>>Quiz.Questions[Queastion].AnswerPlayer;
+		CorrectTheQuestionAnswer(Quiz, Queastion);//هذا الاضافة بعد مع مشاهدة حل الاستاذ محمد
 	}
 	Quiz.IsPassed = (Quiz.CorrectAnswersCount > Quiz.WrongAnswersCount);
 }
-
-void ReadInfoQuiz(stQuiz& Quiz) {
-
+void PrintFinalQuizz(stQuiz FinalQuizz);
+void ReadInfoQuiz() {
+	stQuiz Quiz;
 	//ادخال عدد الأسإلة التي يريدها المستخدم 
 	Quiz.QuestionsCount = ReadNumberRangeBetween("How Many Questions do you want to answr from 1 to 10?", 1, 10);
 	Quiz.Level = ReadLevelQuiz();
 	Quiz.OperationType = ReadOperationType();
+
 	GenerateQueations(Quiz);
 	ReadAnswersPlayer(Quiz);
-	
+	PrintFinalQuizz(Quiz);
 
 }
 
@@ -214,7 +236,7 @@ string GetOperation(enOperationType Operation) {
 //هذا الفنكشن يقوم بطباعة العملوات النهائية للأمتحان 
 void PrintFinalQuizz(stQuiz FinalQuizz) {
 	cout << "--------------------------------\n";
-cout<<	FinalQuizz.IsPassed?"You Passed the Quiz :-)\n" : "Final Resutls is fail :-(\n";
+cout<<(FinalQuizz.IsPassed ? "You Passed the Quiz :-)\n" : "Final Resutls is fail :-(\n");
 	cout << "--------------------------------\n";
 	cout << "Number of Questions     :" << FinalQuizz.QuestionsCount << endl;
 	cout << "Questions Level         :" << GetLevelText(FinalQuizz.Level) << endl;
@@ -223,13 +245,28 @@ cout<<	FinalQuizz.IsPassed?"You Passed the Quiz :-)\n" : "Final Resutls is fail 
 	cout << "Number Of Wrong Answers :" << FinalQuizz.WrongAnswersCount << endl;
 
 }
+void ResetScreen() {
+	system("cls");
+	system("color 0F");
+
+}
+
 void start() {
-
+	//بداية الامتحان
 	stQuiz Quiz;
-
-	ReadInfoQuiz(Quiz);
-	PrintFinalQuizz(Quiz);
+	char PlayAgin = 'Y';
+	do
+	{
+		ResetScreen();
+		ReadInfoQuiz();//تم حذف الستركتر كوز واضافته في الفنكشن مباشرة تعديل لمشابهة حل الاستاذ محمد 
 	
+
+		cout << endl << "Do you want to play agin Y/N?";
+		cin >> PlayAgin;
+	} while (PlayAgin=='Y'|| PlayAgin=='y'); 
+
+	//تم اضافة الدو وايل لكي يسأل المستخدم اذا كان يريد اعادة الامتحان ام لا
+	//هذي الاضافة بعد مع مشاهدة حل الاستاذ محمد 
 
 }
 int main()
