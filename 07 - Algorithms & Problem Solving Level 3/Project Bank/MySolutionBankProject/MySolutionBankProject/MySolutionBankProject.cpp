@@ -8,6 +8,8 @@
 #include <vector>     // ãßÊÈÉ ÇáãÕİæİÇÊ ÇáÏíäÇãíßíÉ - áÇÓÊÎÏÇã vector
 using namespace std;
 
+const string ClinetFileName = "Clients.txt";  // ÇÓã ãáİ ÊÎÒíä ÈíÇäÇÊ ÇáÚãáÇÁ
+
 // ÊÚÑíİ äæÚ ÈíÇäÇÊ ÊÚÏÇÏí íãËá ÎíÇÑÇÊ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
 // Enumeration for main menu options
 enum enMainMenueOptions {
@@ -16,7 +18,14 @@ enum enMainMenueOptions {
 	DELETE_CLIENT = 3,         // ÎíÇÑ ÍĞİ Úãíá
 	UPDATE_CLIENT_INFO = 4,    // ÎíÇÑ ÊÍÏíË ãÚáæãÇÊ Úãíá
 	FIND_CLIENT = 5,           // ÎíÇÑ ÇáÈÍË Úä Úãíá
-	EXIT = 6                   // ÎíÇÑ ÇáÎÑæÌ ãä ÇáÈÑäÇãÌ
+	TRANSACTIONS_MENUE = 6,   // ÎíÇÑ ŞÇÆãÉ ÇáãÚÇãáÇÊ
+	EXIT = 7                  // ÎíÇÑ ÇáÎÑæÌ ãä ÇáÈÑäÇãÌ
+};
+enum enTransactionsOptions{
+	DEPOSIT = 1,        // ÎíÇÑ ÇáÅíÏÇÚ
+	WITHDRAW = 2,       // ÎíÇÑ ÇáÓÍÈ
+	TOTAL_BALANCES = 3, // ÎíÇÑ ÚÑÖ ÅÌãÇáí ÇáÃÑÕÏÉ
+	MAIN_MENUE = 4      // ÎíÇÑ ÇáÚæÏÉ Åáì ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
 };
 
 //-----------------------------ŞÓã ÇáÓÊßÑÊ - Structure Section
@@ -33,9 +42,14 @@ struct stClient
 
 // ÊÕÑíÍ ãÓÈŞ ááÏæÇá - Forward declarations
 // åĞå ÇáÊÕÑíÍÇÊ ÊÓãÍ ÈÇÓÊÎÏÇã ÇáÏæÇá ŞÈá ÊÚÑíİåÇ ÇáßÇãá
+stClient FindClientByAccountNumber(string FileName, string AccountNumber);
+string ReadandChekAccountNumber(string Message);
+bool UpdateFileRecordByAccountNumber(string FileName, stClient UpdatedClient);
+void StartTransactions();   // ÏÇáÉ ÈÏÁ ŞÇÆãÉ ÇáãÚÇãáÇÊ
 void UpdateClientInfo();    // ÏÇáÉ ÊÍÏíË ãÚáæãÇÊ ÇáÚãíá
 void FindClient();          // ÏÇáÉ ÇáÈÍË Úä Úãíá
 void DeleteClient();        // ÏÇáÉ ÍĞİ Úãíá
+void StartMainMenue();      // ÏÇáÉ ÈÏÁ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
 vector <stClient> LoadClientsFromFile(string FileName);  // ÏÇáÉ ÊÍãíá ÇáÚãáÇÁ ãä Çáãáİ
 
 //-------------------------ØÈÇÚÉ ÇáæÇÌåÇÊ ÇáÑÆíÓíÉ - Print Main Interfaces Section
@@ -59,8 +73,27 @@ void HederMainMenueScreen() {
 	cout << "----------------------------------\n";
 }
 
+void HederTransactionsMenueScreen() {
+	cout << "----------------------------------\n";
+	cout << "     Transactions Menue Screen      \n";
+	cout << "----------------------------------\n";
+}
+
 // ÏÇáÉ áØÈÇÚÉ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ ßÇãáÉ
 // Function to print complete main menu
+void PrintTransactionMenueScreen() {
+	system("cls");  // ãÓÍ ÇáÔÇÔÉ - Clear screen
+	HederTransactionsMenueScreen();  // ØÈÇÚÉ ÑÃÓ ÇáŞÇÆãÉ
+
+	// ØÈÇÚÉ ÎíÇÑÇÊ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
+	cout << "\t[1] Deposit\n";        
+	cout << "\t[2] Withdraw\n";       
+	cout << "\t[3] Total Balances\n"; 
+	cout << "\t[4] Main Menue\n";     
+	
+	cout << "----------------------------------\n";
+}
+
 void PrintMainMenueScreen() {
 	system("cls");  // ãÓÍ ÇáÔÇÔÉ - Clear screen
 	HederMainMenueScreen();  // ØÈÇÚÉ ÑÃÓ ÇáŞÇÆãÉ
@@ -69,8 +102,9 @@ void PrintMainMenueScreen() {
 	cout << "\t[2] Add New Client\n";          // ÅÖÇİÉ Úãíá ÌÏíÏ
 	cout << "\t[3] Delete Client\n";           // ÍĞİ Úãíá
 	cout << "\t[4] Update Client Info\n";      // ÊÍÏíË ãÚáæãÇÊ Úãíá
-	cout << "\t[5] Find Client\n";             // ÇáÈÍË Úä Úãíá
-	cout << "\t[6] Exit\n";                    // ÇáÎÑæÌ
+	cout << "\t[5] Find Client\n"; // ÇáÈÍË Úä Úãíá
+	cout << "\t[6] Transactions Menue\n"; // ŞÇÆãÉ ÇáãÚÇãáÇÊ
+	cout << "\t[7] Exit\n";                    // ÇáÎÑæÌ
 	cout << "----------------------------------\n";
 }
 
@@ -119,7 +153,7 @@ void PrintClientRecordLine(stClient Client)
 // Function to print complete client list screen
 void PrintListClientsScreen() {
 	// ÊÍãíá ÌãíÚ ÇáÚãáÇÁ ãä Çáãáİ Åáì vector
-	vector <stClient> vClients = LoadClientsFromFile("Clients.txt");
+	vector <stClient> vClients = LoadClientsFromFile(ClinetFileName);
 	// ØÈÇÚÉ ÑÃÓ ÇáÌÏæá ãÚ ÚÏÏ ÇáÚãáÇÁ
 	PrintHederListClientsScreen((short)vClients.size());
 	// ÍáŞÉ áØÈÇÚÉ ãÚáæãÇÊ ßá Úãíá İí ÓØÑ ãäİÕá
@@ -149,6 +183,7 @@ void PrintHeaderUpdateClientInfoScreen() {
 // ÏÇáÉ áØÈÇÚÉ ãÚáæãÇÊ Úãíá ÈÔßá ÊİÕíáí
 // Function to print client information in detail
 void PrintInfoClient(stClient Client) {
+	cout << "the following are the client info:\n";
 	cout << "--------------------------------------------\n";
 	cout << "Account Number: " << Client.AccountNumber << "\n";  // ÑŞã ÇáÍÓÇÈ
 	cout << "Name: " << Client.Name << "\n";                     // ÇáÇÓã
@@ -173,7 +208,7 @@ enMainMenueOptions ReadMainMenueOption() {
 	int choice = 0;  // ãÊÛíÑ áÊÎÒíä ÇÎÊíÇÑ ÇáãÓÊÎÏã
 	// ÍáŞÉ ááÊÃßÏ ãä Ãä ÇáÇÎÊíÇÑ Èíä 1 æ 6
 	do {
-		cout << "Please enter your choice [1 to 6]: ";
+		cout << "Please enter your choice [1 to 7]: ";
 		cin >> choice;  // ŞÑÇÁÉ ÇáÇÎÊíÇÑ ãä ÇáãÓÊÎÏã
 	} while (choice < SHOW_CLIENT_LIST || choice > EXIT);  // ÇáÊßÑÇÑ ÍÊì íÏÎá ÇÎÊíÇÑ ÕÍíÍ
 	return (enMainMenueOptions)choice;  // ÊÍæíá ÇáÑŞã Åáì äæÚ enum æÅÑÌÇÚå
@@ -194,8 +229,7 @@ void GoBackToMinueScreen() {
 	// ØáÈ ãä ÇáãÓÊÎÏã ÇáÖÛØ Úáì Ãí ÒÑ ááÚæÏÉ
 	cout << "Press any key to go back to Main Menue Screen...";
 	system("pause>0");  // ÅíŞÇİ ãÄŞÊ ÍÊì íÖÛØ ÇáãÓÊÎÏã Ãí ÒÑ
-	PrintMainMenueScreen();  // ØÈÇÚÉ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ ãÑÉ ÃÎÑì
-	ShowScreen(ReadMainMenueOption());  // ŞÑÇÁÉ ÇáÇÎÊíÇÑ ÇáÌÏíÏ æÚÑÖ ÇáÔÇÔÉ ÇáãäÇÓÈÉ
+	StartMainMenue();  // ÈÏÁ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ ãÑÉ ÃÎÑì
 }
 
 // ÊÕÑíÍ ãÓÈŞ áÏÇáÉ AddNewClient
@@ -203,12 +237,12 @@ void AddNewClient();
 
 // ÚÑÖ ÇáÔÇÔÉ ÇáãÎÊÇÑÉ
 // Function to display selected screen based on user choice
-void ShowScreen(enMainMenueOptions NumScreen) {
+void PerformMainMenueOption(enMainMenueOptions NumScreen) {
 	ClearScreen();  // ãÓÍ ÇáÔÇÔÉ ÃæáÇğ
 	// ÇÓÊÎÏÇã switch ááÊİÑÚ ÍÓÈ ÇáÇÎÊíÇÑ
 	switch (NumScreen) {
 	case SHOW_CLIENT_LIST:  // ÅĞÇ ÇÎÊÇÑ ÚÑÖ ŞÇÆãÉ ÇáÚãáÇÁ
-		ClearScreen();
+		
 		PrintListClientsScreen();  // ÚÑÖ ŞÇÆãÉ ÇáÚãáÇÁ
 		GoBackToMinueScreen();     // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
 		break;
@@ -232,18 +266,150 @@ void ShowScreen(enMainMenueOptions NumScreen) {
 		FindClient();          // ÇÓÊÏÚÇÁ ÏÇáÉ ÇáÈÍË
 		GoBackToMinueScreen(); // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
 		break;
-
+	case TRANSACTIONS_MENUE:  // ÅĞÇ ÇÎÊÇÑ ŞÇÆãÉ ÇáãÚÇãáÇÊ
+		StartTransactions();  // ÚÑÖ ŞÇÆãÉ ÇáãÚÇãáÇÊ
+		 GoBackToMinueScreen(); // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
 	case EXIT:  // ÅĞÇ ÇÎÊÇÑ ÇáÎÑæÌ
 		cout << "Exiting the program. Goodbye!\n";  // ÑÓÇáÉ æÏÇÚ
 		break;
 	}
+}
+void GoBackToTransactionsMenueScreen() {
+	// ØáÈ ãä ÇáãÓÊÎÏã ÇáÖÛØ Úáì Ãí ÒÑ ááÚæÏÉ
+	cout << "Press any key to go back to Transactions Menue Screen...";
+	system("pause>0");  // ÅíŞÇİ ãÄŞÊ ÍÊì íÖÛØ ÇáãÓÊÎÏã Ãí ÒÑ
+	StartTransactions(); // ÈÏÁ ŞÇÆãÉ ÇáãÚÇãáÇÊ ãÑÉ ÃÎÑì
+}
+void AddMoneyToBalance(double &Balance, double Account) {
+	Balance += Account;
+
+}
+double ReadAmountMoney(string Message) {
+	double Amount = 0;
+	cout << Message;
+	cin >> Amount;
+	return Amount;
+}
+stClient DepositInfo(){
+
+	string AccountNumber = ReadandChekAccountNumber("Enter Account Number to Deposit: ");
+
+	
+
+	stClient Client = FindClientByAccountNumber(ClinetFileName, AccountNumber);
+
+	PrintInfoClient(Client);
+
+	
+	AddMoneyToBalance(Client.Balance, ReadAmountMoney("Please enter the amount to deposit: "));
+
+	return Client;
+
+}
+
+bool Deposit() {
+
+	stClient Client = DepositInfo();
+	if (UpdateFileRecordByAccountNumber(ClinetFileName, Client)) {
+		cout << "Deposit successful. New balance is: " << Client.Balance << "\n";  // ÑÓÇáÉ äÌÇÍ
+		return true;
+	}
+	else {
+		cout << "Error updating client information.\n";  // ÑÓÇáÉ İÔá
+		return false;
+
+
+	}
+}
+
+stClient WithdrawInfo() {
+
+	string AccountNumber = ReadandChekAccountNumber("Enter Account Number to Deposit: ");
+
+
+
+	stClient Client = FindClientByAccountNumber(ClinetFileName, AccountNumber);
+
+	PrintInfoClient(Client);
+	int ReadAmount = ReadAmountMoney("Please enter the amount to deposit: ");
+
+	do
+	{
+
+		ReadAmount = ReadAmountMoney("Insufficient balance.Please enter a valid amount to withdraw : ");
+
+	} while (ReadAmount > Client.Balance);
+
+
+	AddMoneyToBalance(Client.Balance, ReadAmount*-1);
+
+	return Client;
+
+}
+
+bool Withdraw() {
+
+	stClient Client = WithdrawInfo();
+	if (UpdateFileRecordByAccountNumber(ClinetFileName, Client)) {
+		cout << "Withdraw successful. New balance is: " << Client.Balance << "\n";  // ÑÓÇáÉ äÌÇÍ
+		return true;
+	}
+	else {
+		cout << "Error updating client information.\n";  // ÑÓÇáÉ İÔá
+		return false;
+	}
+}
+void PrintTotalBalancesScreen() {
+	PrintListClientsScreen();
+
+
+	vector <stClient> vClients = LoadClientsFromFile(ClinetFileName);
+	double TotalBalances = 0;
+	for (const stClient& Client : vClients) {
+		TotalBalances += Client.Balance;
+	}
+	cout << Get_Tabs(8)<< "The total balances of all clients is: " << TotalBalances << "\n";
+}
+void PerformTransactionsMenueOption(enTransactionsOptions NumScreen) {
+	ClearScreen();  // ãÓÍ ÇáÔÇÔÉ ÃæáÇğ
+	// ÇÓÊÎÏÇã switch ááÊİÑÚ ÍÓÈ ÇáÇÎÊíÇÑ
+	switch (NumScreen) {
+	case DEPOSIT:  // ÅĞÇ ÇÎÊÇÑ ÇáÅíÏÇÚ
+		
+		Deposit();		  // ÇÓÊÏÚÇÁ ÏÇáÉ ÇáÅíÏÇÚ
+		GoBackToTransactionsMenueScreen();     // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
+		break;
+	case WITHDRAW:  // ÅĞÇ ÇÎÊÇÑ ÇáÓÍÈ
+		Withdraw(); 	// ÇÓÊÏÚÇÁ ÏÇáÉ ÇáÓÍÈ
+		GoBackToTransactionsMenueScreen();   // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
+		break;
+	case TOTAL_BALANCES:  // ÅĞÇ ÇÎÊÇÑ ÚÑÖ ÅÌãÇáí ÇáÃÑÕÏÉ
+		PrintTotalBalancesScreen();	  // ÇÓÊÏÚÇÁ ÏÇáÉ ÚÑÖ ÇáÃÑÕÏÉ
+		GoBackToTransactionsMenueScreen(); // ÇáÚæÏÉ ááŞÇÆãÉ ÇáÑÆíÓíÉ
+		break;
+	case MAIN_MENUE:  // ÅĞÇ ÇÎÊÇÑ ÇáÚæÏÉ Åáì ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
+		StartMainMenue();      // ÈÏÁ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ ãÑÉ ÃÎÑì
+		break;
+	}
+}
+enTransactionsOptions ReadTransactionsOptino()
+{
+	short num;
+	cout << "Choose what are you want to do ? [1 to 4]?";
+	cin >> num;
+	return (enTransactionsOptions)num;
+
+}
+void StartTransactions() {
+	PrintTransactionMenueScreen();
+	PerformTransactionsMenueOption(ReadTransactionsOptino());
 }
 
 // ÈÏÁ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
 // Function to start main menu
 void StartMainMenue() {
 	PrintMainMenueScreen();  // ØÈÇÚÉ ÇáŞÇÆãÉ ÇáÑÆíÓíÉ
-	ShowScreen(ReadMainMenueOption());  // ŞÑÇÁÉ ÇáÇÎÊíÇÑ æÚÑÖ ÇáÔÇÔÉ ÇáãäÇÓÈÉ
+	PerformMainMenueOption(ReadMainMenueOption());  // ŞÑÇÁÉ ÇáÇÎÊíÇÑ æÚÑÖ ÇáÔÇÔÉ ÇáãäÇÓÈÉ
 }
 
 //----------------------------------------------------
@@ -487,7 +653,7 @@ string ReadNewAccount(string Message)
 		cin >> Text;  // ŞÑÇÁÉ ÑŞã ÇáÍÓÇÈ ãä ÇáãÓÊÎÏã
 
 		// ÇáÊÍŞŞ ãä æÌæÏ ÑŞã ÇáÍÓÇÈ ãÓÈŞÇğ
-		if (ExistAccountNumber(Text, "Clients.txt")) {
+		if (ExistAccountNumber(Text, ClinetFileName)) {
 			cout << "Account Number already exists. Please enter a different one.\n";
 		}
 		else {
@@ -509,7 +675,7 @@ string ReadandChekAccountNumber(string Message)
 		cin >> Text;  // ŞÑÇÁÉ ÑŞã ÇáÍÓÇÈ
 
 		// ÇáÊÍŞŞ ãä æÌæÏ ÑŞã ÇáÍÓÇÈ
-		if (ExistAccountNumber(Text, "Clients.txt")) {
+		if (ExistAccountNumber(Text, ClinetFileName)) {
 			return Text;  // ÅÑÌÇÚ ÑŞã ÇáÍÓÇÈ ÅĞÇ ßÇä ãæÌæÏÇğ
 		}
 		else {
@@ -580,7 +746,7 @@ void AddNewClient() {
 	string ClientRecord = GetFormatClientRecord(Client);
 
 	// ãÍÇæáÉ ÅÖÇİÉ ÇáÚãíá Åáì Çáãáİ
-	if (AddRecordToFile("Clients.txt", ClientRecord))
+	if (AddRecordToFile(ClinetFileName, ClientRecord))
 	{
 		cout << "Client added successfully.\n";  // ÑÓÇáÉ äÌÇÍ
 	}
@@ -599,7 +765,7 @@ void DeleteClient() {
 	string AccountNumber = ReadandChekAccountNumber("Enter Account Number to delete: ");
 
 	// ãÍÇæáÉ ÍĞİ ÇáÚãíá ãä Çáãáİ
-	if (DeleteFileRecordByAccountNumber("Clients.txt", AccountNumber)) {
+	if (DeleteFileRecordByAccountNumber(ClinetFileName, AccountNumber)) {
 		cout << "Client with Account Number " << AccountNumber << " deleted successfully.\n";  // ÑÓÇáÉ äÌÇÍ
 	}
 	else {
@@ -616,7 +782,7 @@ void FindClient() {
 	string AccountNumber = ReadandChekAccountNumber("Enter Account Number to Find: ");
 
 	// ÇáÈÍË Úä ÇáÚãíá İí Çáãáİ
-	stClient Client = FindClientByAccountNumber("Clients.txt", AccountNumber);
+	stClient Client = FindClientByAccountNumber(ClinetFileName, AccountNumber);
 
 	// ØÈÇÚÉ ãÚáæãÇÊ ÇáÚãíá ÇáÊİÕíáíÉ
 	PrintInfoClient(Client);
@@ -630,7 +796,7 @@ void UpdateClientInfo() {
 	// ŞÑÇÁÉ ÑŞã ÇáÍÓÇÈ ÇáãÑÇÏ ÊÍÏíËå (ãÚ ÇáÊÍŞŞ ãä æÌæÏå)
 	string AccountNumber = ReadandChekAccountNumber("Enter Account Number to Update: ");
 	// ÇáÈÍË Úä ÇáÚãíá æÌáÈ ãÚáæãÇÊå ÇáÍÇáíÉ
-	stClient Client = FindClientByAccountNumber("Clients.txt", AccountNumber);
+	stClient Client = FindClientByAccountNumber(ClinetFileName, AccountNumber);
 	// ÚÑÖ ÇáãÚáæãÇÊ ÇáÍÇáíÉ ááÚãíá
 	cout << "Current Client Information:\n";
 	PrintInfoClient(Client);
@@ -638,7 +804,7 @@ void UpdateClientInfo() {
 	cout << "\nEnter New Information:\n";
 	ReadUpdatedClientInfo(Client);
 	// ãÍÇæáÉ ÊÍÏíË ÇáãÚáæãÇÊ İí Çáãáİ
-	if (UpdateFileRecordByAccountNumber("Clients.txt", Client)) {
+	if (UpdateFileRecordByAccountNumber(ClinetFileName, Client)) {
 		cout << "Client information updated successfully.\n";  // ÑÓÇáÉ äÌÇÍ
 	}
 	else {
